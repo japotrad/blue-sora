@@ -3,7 +3,7 @@ Preparation chain generating bilingual bibk files from Aozora Bunko HTML documen
 
 ## Initial workflow to create a new document
 ![Inital workflow overview](0-InitialWorkflow.png)
-File description:
+### File description:
 - **12345-jis.html**: XHTML file available on Aozora.gr.jp. 12345 corresponds to the Card number. The actual URL looks like https://www.aozora.gr.jp/cards/xxxxxx/files/12345_yyyyy.html, where xxxxxx is the authore ID and yyyyy is the HTML file ID.
 - **12345-ja.html**: Cleaned up version of the above XHTML file: it contains only texts that require translation.
 - **12345-furigana.xml**: Japanese reading helper extracted from the JIS file. Translating this file does not make sense.
