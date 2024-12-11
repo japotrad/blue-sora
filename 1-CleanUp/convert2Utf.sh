@@ -7,16 +7,14 @@ script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
 
 usage() {
   cat <<EOF
-Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-v] [-f] -p param_value arg1 [arg2...]
+Usage: $(basename "${BASH_SOURCE[0]}") [-h] input_path output_path
 
-Script description here.
+Convert a HTML file from Aozora Bunko into UTF-8
 
 Available options:
-
 -h, --help      Print this help and exit
--v, --verbose   Print script debug info
--i, --input     Input ShiftJIS HTML filepath
--o, --output    Output UTF-8 HTML filepath
+input_path      Input HTML filepath (Shift JIS encoding)
+output_path     Output HTML filepath (UTF-8 encoding)
 EOF
   exit
 }
@@ -45,44 +43,23 @@ die() {
 }
 
 parse_params() {
-  # default values of variables set from params
-  flag=0
-  param=''
-
-  while :; do
-    case "${1-}" in
-    -h | --help) usage ;;
-    -v | --verbose) set -x ;;
-    --no-color) NO_COLOR=1 ;;
-    -f | --flag) flag=1 ;; # example flag
-    -p | --param) # example named parameter
-      param="${2-}"
-      shift
-      ;;
-    -?*) die "Unknown option: $1" ;;
-    *) break ;;
-    esac
-    shift
-  done
-
-  args=("$@")
-
-  # check required params and arguments
-  [[ -z "${param-}" ]] && die "Missing required parameter: param"
-  [[ ${#args[@]} -eq 0 ]] && die "Missing script arguments"
-
+  if [ "$#" -ne 2 ]; then
+    usage
+    exit 1
+  fi
+  if ! [ -e "$1" ]; then
+    msg "${RED}Parameter error (input_path): ${NOFORMAT} $1 file not found"
+    exit 1
+  fi
   return 0
 }
-
-parse_params "$@"
 setup_colors
+parse_params "$@"
 
-# script logic here
+msg "${BLUE}Read parameters:${NOFORMAT}"
+msg " - Input file path: $1"
+msg " - Output file path: $2"
 
-msg "${RED}Read parameters:${NOFORMAT}"
-msg "- flag: ${flag}"
-msg "- param: ${param}"
-msg "- arguments: ${args[*]-}"
 file_name=$1
 html_extension="html"
 source_path='Aozora'
