@@ -25,7 +25,10 @@ Preparation chain generating bilingual bibk files from Aozora Bunko HTML documen
   - No bibliographic info
 - **12345-furigana.xml**: Japanese reading helper. Translating this file does not make sense. Conform to furigana.dtd format.
 - **12345-note.xml**: Japanese publisher notes from Aozora. Based on our experience, we assume that no translation is needed, as these notes usually contains comments explaining that Aozora picked up a character that is slightly different from the paper document they scanned. Conform to note.dtd format.
-- **12345-ja.html**: Cleaned up version of 12345-utf.html. It contains only the text to translate.
+- **12345-ja.html**: Cleaned up version of 12345-utf.html. It contains only the text to translate. Main characteristics compared to the UTF file:
+  - No metadata
+  - No furigana
+  - No Aozona publisher note  
 ### Tool description:
 - convert2Utf.sh: Bash script  
   Usage: ```convert2Utf.sh 12345-jis.html 12345-utf.html```
