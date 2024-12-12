@@ -36,7 +36,7 @@
       </bpmn:dataOutputAssociation>
     </bpmn:task>
     <bpmn:sequenceFlow id="Flow_110jjn3" sourceRef="Activity_1lwcu5b" targetRef="Activity_11o5xie" />
-    <bpmn:dataObjectReference id="DataObjectReference_1vvia2w" name="12345-notes.xml" dataObjectRef="DataObject_0j7nle8" />
+    <bpmn:dataObjectReference id="DataObjectReference_1vvia2w" name="12345-note.xml" dataObjectRef="DataObject_0j7nle8" />
     <bpmn:dataObject id="DataObject_0j7nle8" />
     <bpmn:dataObjectReference id="DataObjectReference_18g07su" name="12345-ja.html" dataObjectRef="DataObject_0sen1cr" />
     <bpmn:dataObject id="DataObject_0sen1cr" />
@@ -113,7 +113,7 @@
       <bpmndi:BPMNShape id="DataObjectReference_1vvia2w_di" bpmnElement="DataObjectReference_1vvia2w" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
         <dc:Bounds x="562" y="355" width="36" height="50" />
         <bpmndi:BPMNLabel color:color="#e53935">
-          <dc:Bounds x="541" y="412" width="82" height="14" />
+          <dc:Bounds x="544" y="412" width="77" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="DataObjectReference_18g07su_di" bpmnElement="DataObjectReference_18g07su" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
