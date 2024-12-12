@@ -19,6 +19,7 @@ EOF
   exit
 }
 cleanup() {
+  rm -r ${temp_path}
   trap - SIGINT SIGTERM ERR EXIT
   # script cleanup here
 }
@@ -55,30 +56,31 @@ parse_params() {
 }
 setup_colors
 parse_params "$@"
+cd 
 
 msg "${BLUE}Read parameters:${NOFORMAT}"
-msg " - Input file path: $1"
-msg " - Output file path: $2"
+input_path=$1
+msg " - Input file path: ${input_path}"
+output_path=$2
+msg " - Output file path: ${output_path}"
+temp_path="${script_dir}/temp"
+msg " - Temporary folder path: ${temp_path}"
 
-file_name=$1
-html_extension="html"
-source_path='Aozora'
-temp_path='temp'
+file_name=$(basename ${input_path})
 target_path="UTF-8"
 is_header=1
 is_footer=0
 p_id=1
 div_id=1
-if [[ "${file_name##*.}" == "${html_extension}" ]]; then # Remove the file extension from the file name if present
-  file_name="${file_name:0:${#file_name}-5}"
-fi
+# Step 0: Create the temporary folder
+mkdir -p ${temp_path}
 # Step 1: Change character encoding
-iconv -f SHIFT-JIS -t UTF-8 "${source_path}/${file_name}.${html_extension}" > "${temp_path}/${file_name}-1.${html_extension}"
+iconv -f SHIFT-JIS -t UTF-8 "${input_path}" > "${temp_path}/${file_name}-1"
 # Step 2: Update the character encoding declarations in the file
-awk '{gsub("Shift_JIS", "UTF-8"); print;}' "${temp_path}/${file_name}-1.${html_extension}" > "${temp_path}/${file_name}-2.${html_extension}"
+awk '{gsub("Shift_JIS", "UTF-8"); print;}' "${temp_path}/${file_name}-1" > "${temp_path}/${file_name}-2"
 
 # Step 3: Apply various fixes, and improve the file structure
-rm -f "${temp_path}/${file_name}-3.${html_extension}"
+rm -f "${temp_path}/${file_name}-3"
 while IFS= read -r line
   do
 	if [[ "$line" == *"<div class=\"bibliographical_information\">"* ]]; then
@@ -93,7 +95,7 @@ while IFS= read -r line
 	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-01\/1-01-52.png\" alt=\"※(始め二重山括弧、1-1-52)\" class=\"gaiji\" \/>/《}
 	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-01\/1-01-53.png\" alt=\"※(終わり二重山括弧、1-1-53)\" class=\"gaiji\" \/>/》}
 	  if [[ "$line" == *"1-02-22.png"* ]]; then # If there is a ku-no-jiten, generate a warning
-	    echo "Warning: Ku-no-jiten replaced 々 in ${line}"
+	     msg "${YELLOW}: Ku-no-jiten replaced 々 in ${line}"
 	  fi
 	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-02\/1-02-22.png\" alt=\"※(二の字点、1-2-22)\" class=\"gaiji\" \/>/々}
 	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-02\/1-02-54.png\" alt=\"※(始め二重括弧、1-2-54)\" class=\"gaiji\" \/>/｟}
@@ -149,36 +151,35 @@ while IFS= read -r line
 	  line=${line//<span class=\"notes\">［＃改ページ］<\/span>/}
 
 	  if [[ "$line" == *"src=\"../../../gaiji/"* ]]; then # If there is some unknown characters, generate an error
-	    echo "Error: Unknown character in ${line}"
+	     msg "${RED}Error: Unknown character in ${line}"
 	  fi
 	  if [[ "$line" == *"<span class=\"notes\">"* ]]; then # Convert notes into checkboxes. See https://stackoverflow.com/questions/40336366/in-line-footnotes-with-only-html-css-in-notes
 	  	line=`echo $line | sed -E "s/<span class=\"notes\">［＃([^］]*)］<\/span>/<label><sup>＃<\/sup><input type=\"checkbox\" \/><span>\1<\/span><\/label>/g"`
 	  fi
 	  if [[ "$line" == *"<span class=\"notes\">"* ]]; then # If there is an unknown note format, generate a warning
-	    echo "Warning: Note in ${line}"
+	     msg "${YELLOW}Warning: Note in ${line}"
 	  fi
-	  
 	  if echo "${line:0:1}" | grep -q $'\u3000'; then #If the line starts with an ideographic space
 	    if [[ "$line" == *"<br />"* ]]; then # and contains a br tag
 	      line2=`echo "<p id=\"p${p_id}\">${line:1}"` # inject p tags instead
-		  line="${line2/<br \/>/<\/p>}"
-		  nb_br=`echo "$line" | grep -o "<br />" | wc -l`
-		  if [ $nb_br -gt 1 ]; then # If there is more than 1 <br /> tag in the line, generate an error
-		    echo "Error: Extra <br /> tag in paragraph id=\"p${p_id}\""
+		  line="${line2/<br \/>/<\/p>}" # Replace the first br tag with a closing p tag.
+		  if [[ "$line" == *"<br />"* ]]; then # If there is still a <br /> tag in the line, generate an error
+		     msg "${RED}Error: Extra <br /> tag in paragraph id=\"p${p_id}\""
 	      fi
 		  ((p_id+=1)) #Increment the unique identifier of the paragraph
 	    fi
 	  fi
 	fi # End if "in main text"
-        if [ $is_footer -eq 0 ]; then # Do not output the footer 
-	  echo -e "$line" >> "${temp_path}/${file_name}-3.${html_extension}"
+    if [ $is_footer -eq 0 ]; then # Do not output the footer 
+	  echo -e "$line" >> "${temp_path}/${file_name}-3"
 	fi
 	if [[ "$line" == *"<div class=\"main_text\">"* ]]; then
 	  is_header=0
 	fi
-  done < "${temp_path}/${file_name}-2.${html_extension}"
+  done < "${temp_path}/${file_name}-2"
   # Close the HTML
-  echo -e "</body>" >> "${temp_path}/${file_name}-3.${html_extension}"
-  echo -e "</html>" >> "${temp_path}/${file_name}-3.${html_extension}"
+  echo -e "</body>" >> "${temp_path}/${file_name}-3"
+  echo -e "</html>" >> "${temp_path}/${file_name}-3"
   # Final step: copy the file in the output folder
-  cp "${temp_path}/${file_name}-3.${html_extension}" "${target_path}/${file_name}.${html_extension}"
+  cp "${temp_path}/${file_name}-3" "${output_path}"
+  cleanup
