@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE furigana
+  SYSTEM "furigana.dtd">
+<furigana>
+   <furi location="p1" kanji="駄洒落" kana="だじゃれ"/>
+   <furi location="p1" kanji="笑" kana="わらい"/>
+   <furi location="p1" kanji="陰鬱" kana="いんうつ"/>
+   <furi location="p1" kanji="朗" kana="ほがら"/>
+   <furi location="p1" kanji="双児" kana="ふたご"/>
+   <furi location="p1" kanji="譬" kana="たと"/>
+   <furi location="p1" kanji="咎" kana="とが"/>
+   <furi location="p2" kanji="西田幾多郎" kana="にしだきたろう"/>
+   <furi location="p2" kanji="貴船" kana="きぶね"/>
+   <furi location="p3" kanji="貰" kana="もら"/>
+</furigana>

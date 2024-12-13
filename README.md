@@ -32,9 +32,9 @@ Preparation chain generating bilingual bibk files from Aozora Bunko HTML documen
 ### Tool description:
 - convert2Utf.sh: Bash script  
   Usage: ```convert2Utf.sh 12345-jis.html 12345-utf.html```
-- furigana.xslt: XSL stylesheet V2.0
-- note.xslt: XSL stylesheet V2.0
-- clean.xslt: XSL stylesheet V2.0
+- furigana.xsl: XSL stylesheet V1.0
+- note.xsl: XSL stylesheet V1.0
+- clean.xsl: XSL stylesheet V1.0
 - HTML Purifier from [htmlpurifier.org](http://htmlpurifier.org)
 ### 2. Translate the HTML file into English
 You can have the file translated by a human or a machine.

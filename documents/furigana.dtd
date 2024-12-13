@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!ELEMENT furigana (furi)>
+<!ELEMENT furigana (furi*)>
 <!ELEMENT furi EMPTY>
 <!-- The location is the id of the segment where the furigana is located (e.g., p2).
      A space-separated list can be used (e.g. p1 p3).
