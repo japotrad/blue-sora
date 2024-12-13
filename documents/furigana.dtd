@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT furigana (furi)>
+<!ELEMENT furi EMPTY>
+<!-- The location is the id of the segment where the furigana is located (e.g., p2).
+     A space-separated list can be used (e.g. p1 p3).
+     If there is no location, it means that the furigana is potentially located on all segments.
+ -->
+<!ATTLIST furi location CDATA #IMPLIED>
+<!-- Kanji is typically composed of Chinese characters. -->
+<!ATTLIST furi kanji CDATA #REQUIRED>
+<!-- Kana is typically composed of (phonetically transparent) hiragana characters. -->
+<!ATTLIST furi kana CDATA #REQUIRED>
