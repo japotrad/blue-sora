@@ -128,15 +128,15 @@
     </bpmn:textAnnotation>
     <bpmn:association id="Association_0uhkx20" associationDirection="None" sourceRef="Activity_101xl43" targetRef="TextAnnotation_0rz0yp5" />
     <bpmn:textAnnotation id="TextAnnotation_0t7qfll">
-      <bpmn:text>furigana.xslt</bpmn:text>
+      <bpmn:text>furigana.xsl</bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:association id="Association_1in8kif" associationDirection="None" sourceRef="Activity_05vk0xy" targetRef="TextAnnotation_0t7qfll" />
     <bpmn:textAnnotation id="TextAnnotation_1svyke8">
-      <bpmn:text>note.xslt</bpmn:text>
+      <bpmn:text>note.xsl</bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:association id="Association_1bcsro3" associationDirection="None" sourceRef="Activity_0gr72c1" targetRef="TextAnnotation_1svyke8" />
     <bpmn:textAnnotation id="TextAnnotation_12vx5tr">
-      <bpmn:text>clean.xslt</bpmn:text>
+      <bpmn:text>clean.xsl</bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:association id="Association_09w6e0q" associationDirection="None" sourceRef="Activity_0bde511" targetRef="TextAnnotation_12vx5tr" />
   </bpmn:process>
@@ -223,7 +223,7 @@
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1svyke8_di" bpmnElement="TextAnnotation_1svyke8" bioc:stroke="#1e88e5" bioc:fill="#bbdefb" color:background-color="#bbdefb" color:border-color="#1e88e5">
-        <dc:Bounds x="670" y="455" width="100" height="29.99131965637207" />
+        <dc:Bounds x="670" y="455" width="100" height="30" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_12vx5tr_di" bpmnElement="TextAnnotation_12vx5tr" bioc:stroke="#1e88e5" bioc:fill="#bbdefb" color:background-color="#bbdefb" color:border-color="#1e88e5">
