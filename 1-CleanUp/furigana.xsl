@@ -6,8 +6,6 @@
             <xsl:apply-templates/>
         </furigana>
     </xsl:template>
-    <xsl:template match="xhtml:h1" />
-    <xsl:template match="xhtml:h2" />
     <xsl:template match="xhtml:p">
         <xsl:variable name="location"><xsl:value-of select="@id"/></xsl:variable>
         <xsl:apply-templates select="xhtml:ruby">
