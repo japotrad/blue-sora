@@ -28,7 +28,8 @@ Preparation chain generating bilingual bibk files from Aozora Bunko HTML documen
 - **12345-ja.html**: Cleaned up version of 12345-utf.html. It contains only the text to translate. Main characteristics compared to the UTF file:
   - No metadata
   - No furigana
-  - No Aozona publisher note  
+  - No Aozora Bunko publisher note
+  - XHTML 1.0 Strict compliance
 ### Tool description:
 - convert2Utf.sh: Bash script  
   Usage: ```convert2Utf.sh 12345-jis.html 12345-utf.html```
