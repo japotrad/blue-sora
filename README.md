@@ -1,9 +1,8 @@
-# blue-sora
-Preparation chain generating bilingual bibk files from Aozora Bunko HTML documents
+blue-sora is a preparation chain generating bilingual bibk files from Aozora Bunko HTML documents
 
-## Initial workflow to create a new document
+# Initial workflow to create a new document
 ![Initial workflow overview](0-InitialWorkflow.png)
-### File description:
+## File description:
 - **12345-jis.html**: XHTML file available on Aozora.gr.jp. 12345 corresponds typically to the Aozora Bunko Card number, but you can use another naming convention.
 - **12345-ja.html**: Cleaned up version of the above XHTML file: it contains only texts that require translation.
 - **12345-furigana.xml**: Japanese reading helper extracted from the JIS file. No translation is needed.
@@ -14,7 +13,7 @@ Preparation chain generating bilingual bibk files from Aozora Bunko HTML documen
 - **12345-preface.html**: A preface for English readers, in XHTML format.
 - **12345.ris**: Bibliographic record for English readers.
 - **12345.bibk**: Bilingual book in an XML format similar to DocBook V5.x.
-### 1. Clean up the HTML file in Japanese
+## 1. Clean up the HTML file in Japanese
 ![Clean up overview](1-CleanUp.png)
 ### File description:
 - **12345-jis.html**: XHTML file available on Aozora.gr.jp. 12345 corresponds typically to the Aozora Bunko Card number, but you can use another naming convention.
@@ -36,20 +35,19 @@ Preparation chain generating bilingual bibk files from Aozora Bunko HTML documen
 - furigana.xsl: XSL stylesheet V1.0
 - note.xsl: XSL stylesheet V1.0
 - clean.xsl: XSL stylesheet V1.0
-- HTML Purifier from [htmlpurifier.org](http://htmlpurifier.org)
-### 2. Translate the HTML file into English
+- CheckHTML.php based on [![Powered by HTML Purifier](http://htmlpurifier.org/live/art/powered.png 'HTML Purifier')](http://htmlpurifier.org/) to inspect the HTML body  
+  Usage: ```CheckHTML.php 12345-ja.html```
+## 2. Translate the document
 You can have the file translated by a human or a machine.
 Note: If your language is not English, don't worry: The process is the same for any language, not just English.
-### 3. Add some extra information
-### 4. Merge the files into a bibk file
+## 3. Add some extra information
+## 4. Merge the files into a bibk file
 
-## Iterative workflow to update an existing document
-### - Update of the HTML file in Japanese
+# Iterative workflow to update an existing document
+## - Update of the HTML file in Japanese
 There are two distinct cases to consider depending whether the update impacts the main text or furiganas.
-### - Update of the HTML file in English
-### - Update of the Preface in English
-### - Update of the Bibliographic Details
+## - Update of the HTML file in English
+## - Update of the Preface in English
+## - Update of the Bibliographic Details
 ---
 BPMN diagrams made with Camunda Modeler. [Big thanks to them!](https://camunda.com/)
-
-[![Powered by HTML Purifier](http://htmlpurifier.org/live/art/powered.png 'Powered by HTML Purifier')](http://htmlpurifier.org/)
