@@ -31,12 +31,12 @@ blue-sora is a preparation chain generating bilingual bibk files from Aozora Bun
   - XHTML 1.0 Strict compliance
 ### Tool description:
 - convert2Utf.sh: Bash script  
-  Usage: ```convert2Utf.sh 12345-jis.html 12345-utf.html```
+  Usage: ```./convert2Utf.sh ../documents/12345-jis.html ../documents/12345-utf.html```
 - furigana.xsl: XSL stylesheet V1.0
 - note.xsl: XSL stylesheet V1.0
 - clean.xsl: XSL stylesheet V1.0
 - CheckHTML.php based on [![Powered by HTML Purifier](http://htmlpurifier.org/live/art/powered.png 'HTML Purifier')](http://htmlpurifier.org/) to inspect the HTML body  
-  Usage: ```CheckHTML.php 12345-ja.html```
+  Usage: ```php.exe CheckHTML.php ../documents/12345-ja.html```
 ## 2. Translate the document
 You can have the file translated by a human or a machine.
 Note: If your language is not English, don't worry: The process is the same for any language, not just English.
