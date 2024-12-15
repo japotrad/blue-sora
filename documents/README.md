@@ -1,7 +1,7 @@
 ## Document List
-| Aozora Card #  | Title | Languages |
-| ------------- | ------ | --------- |
-| 4402 | 偶然の産んだ駄洒落  | JA -> FR |
+| Aozora Card #  | Title | Languages | CAT Tool |
+| ------------- | ------ | --------- | -------- |
+| 4402 | 偶然の産んだ駄洒落  | JA -> FR | OmegaT 6.0 |
 
 
 ## Feature matrix by document type
@@ -10,6 +10,8 @@
 | Furigana | 4402 | | |
 | Rare kanji (gaiji) | | | |
 | Image | | | |
-| Publisher note | | | |
 | Vertical writing | | | |
+| Publisher note | | | |
+| Translator note | 4402 | | |
+
 
