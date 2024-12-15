@@ -21,9 +21,6 @@
     <xsl:template match="xhtml:ruby">
         <xsl:value-of select="xhtml:rb"/>
     </xsl:template>
-    <xsl:template match="xhtml:title">
-        <xsl:element name="title" namespace="http://www.w3.org/1999/xhtml"/>
-    </xsl:template>
     <!--xsl:template match="*|@*">
         <xsl:copy>
             <xsl:apply-templates select="@*"/>

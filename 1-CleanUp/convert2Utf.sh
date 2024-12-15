@@ -56,7 +56,6 @@ parse_params() {
 }
 setup_colors
 parse_params "$@"
-cd 
 
 msg "${BLUE}Read parameters:${NOFORMAT}"
 input_path=$1
@@ -66,7 +65,8 @@ msg " - Output file path: ${output_path}"
 temp_path="${script_dir}/temp"
 msg " - Temporary folder path: ${temp_path}"
 
-file_name=$(basename ${input_path})
+input_file_name=$(basename ${input_path})
+output_file_name=$(basename ${output_path})
 target_path="UTF-8"
 is_header=1
 is_footer=0
@@ -75,12 +75,12 @@ div_id=1
 # Step 0: Create the temporary folder
 mkdir -p ${temp_path}
 # Step 1: Change character encoding
-iconv -f SHIFT-JIS -t UTF-8 "${input_path}" > "${temp_path}/${file_name}-1"
+iconv -f SHIFT-JIS -t UTF-8 < ${input_path} > "${temp_path}/${input_file_name}-1"
 # Step 2: Update the character encoding declarations in the file
-awk '{gsub("Shift_JIS", "UTF-8"); print;}' "${temp_path}/${file_name}-1" > "${temp_path}/${file_name}-2"
+awk '{gsub("Shift_JIS", "UTF-8"); print;}' "${temp_path}/${input_file_name}-1" > "${temp_path}/${input_file_name}-2"
 
 # Step 3: Apply various fixes, and improve the file structure
-rm -f "${temp_path}/${file_name}-3"
+rm -f "${temp_path}/${input_file_name}-3"
 while IFS= read -r line
   do
 	if [[ "$line" == *"<div class=\"bibliographical_information\">"* ]]; then
@@ -170,16 +170,19 @@ while IFS= read -r line
 	    fi
 	  fi
 	fi # End if "in main text"
+	if [[ "$line" == *"<title>"* ]]; then # Overwrite title metadata with the output file name
+	  line=${line/<title>[^<]*<\/title>/<title>From ${output_file_name}<\/title>}
+	fi
     if [ $is_footer -eq 0 ]; then # Do not output the footer 
-	  echo -e "$line" >> "${temp_path}/${file_name}-3"
+	  echo -e "$line" >> "${temp_path}/${input_file_name}-3"
 	fi
 	if [[ "$line" == *"<div class=\"main_text\">"* ]]; then
 	  is_header=0
 	fi
-  done < "${temp_path}/${file_name}-2"
+  done < "${temp_path}/${input_file_name}-2"
   # Close the HTML
-  echo -e "</body>" >> "${temp_path}/${file_name}-3"
-  echo -e "</html>" >> "${temp_path}/${file_name}-3"
+  echo -e "</body>" >> "${temp_path}/${input_file_name}-3"
+  echo -e "</html>" >> "${temp_path}/${input_file_name}-3"
   # Final step: copy the file in the output folder
-  cp "${temp_path}/${file_name}-3" "${output_path}"
+  cp "${temp_path}/${input_file_name}-3" "${output_path}"
   cleanup
