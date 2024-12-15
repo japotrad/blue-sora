@@ -1,7 +1,7 @@
 <?php
-$filepath = $argv[1];
-require_once 'htmlpurifier/library/HTMLPurifier.auto.php';
-$ja_html = file_get_contents($filepath);
+$docpath = $argv[1]; // Command argument Path to the HTML document to process
+require_once __DIR__.'/htmlpurifier/library/HTMLPurifier.auto.php';
+$ja_html = file_get_contents($docpath);
 // Customize HTML Purifier. See http://htmlpurifier.org/live/configdoc/plain.html
 $config = HTMLPurifier_Config::createDefault();
 $config->set('Core.CollectErrors',1);
