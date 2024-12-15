@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tmx SYSTEM "tmx14.dtd">
+<tmx version="1.4">
+  <header creationtool="OmegaT" o-tmf="OmegaT TMX" adminlang="EN-US" datatype="plaintext" creationtoolversion="6.0.0_0_1bf1729c" segtype="sentence" srclang="ja"/>
+  <body>
+<!-- Default translations -->
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>From 4402-utf.html</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T111709Z" creationid="Stephane" creationdate="20241215T111709Z">
+        <seg>4402-fr</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>ja</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T111849Z" creationid="Stephane" creationdate="20241215T111651Z">
+        <seg>fr</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>ある日、私がパリで散髪をしていると理髪師が私に向ってデ・ジャポネー（日本人）は騎兵は要らぬそうですねといった。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T110927Z" creationid="Stephane" creationdate="20241215T110408Z">
+        <seg>Un jour que j’étais à Paris chez le coiffeur, celui-ci se retourna vers moi et me lança : « Il paraît que des Japonais n’ont pas besoin de montures. »</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>この二つの場合で、クキがクッキーでグキットしたとはいいやすいが、アマノがアマゴとアナゴを間違えたといおうとするとうまく口が廻らないで多少の努力を要する。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T134132Z" creationid="Stephane" creationdate="20241215T134132Z">
+        <seg>Autant il est facile de dire « Kouki avait le cou qui coinçait à cause des cookies », autant il faut faire un certain effort pour dire « Amano avait confondu amago et anago ».</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>これは<bpt i="0" x="0">&lt;s0&gt;</bpt>アマノ<ept i="0">&lt;/s0&gt;</ept>が<bpt i="1" x="1">&lt;s1&gt;</bpt>アマゴ<ept i="1">&lt;/s1&gt;</ept>と<bpt i="2" x="2">&lt;s2&gt;</bpt>アナゴ<ept i="2">&lt;/s2&gt;</ept>を間違えた話である。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T132441Z" creationid="Stephane" creationdate="20241215T132441Z">
+        <seg>Bref, <bpt i="0" x="0">&lt;s0&gt;</bpt>Amano<ept i="0">&lt;/s0&gt;</ept> avait confondu <bpt i="1" x="1">&lt;s1&gt;</bpt>amago<ept i="1">&lt;/s1&gt;</ept> et <bpt i="2" x="2">&lt;s2&gt;</bpt>anago<ept i="2">&lt;/s2&gt;</ept>.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>これは<bpt i="0" x="0">&lt;s0&gt;</bpt>クキ<ept i="0">&lt;/s0&gt;</ept>が<bpt i="1" x="1">&lt;s1&gt;</bpt>クッキー<ept i="1">&lt;/s1&gt;</ept>で<bpt i="2" x="2">&lt;s2&gt;</bpt>グキット<ept i="2">&lt;/s2&gt;</ept>した話である。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T134055Z" creationid="Stephane" creationdate="20241215T134055Z">
+        <seg>Bref, <bpt i="0" x="0">&lt;s0&gt;</bpt>Kouki<ept i="0">&lt;/s0&gt;</ept> avait le <bpt i="1" x="1">&lt;s1&gt;</bpt>cou qui<ept i="1">&lt;/s1&gt;</ept> coinçait à cause des <bpt i="2" x="2">&lt;s2&gt;</bpt>cookies<ept i="2">&lt;/s2&gt;</ept>.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>その一つは既に新聞に載ったこともあるからある人々には旧聞に属するかも知れない。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T131319Z" creationid="Stephane" creationdate="20241215T131319Z">
+        <seg>Il y a aussi cette anecdote que certains lecteurs connaissent peut-être puisqu’elle a déjà été publiée dans un journal.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>ビスケットという古い言葉がクッキーという新しい言葉に代ってしまっているのを初めて知って、自分の住んでいる古い世界と少女の住んでいる新しい世界との間隔に軽い目まいを感じたのである。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T133945Z" creationid="Stephane" creationdate="20241215T133945Z">
+        <seg>Je venais de découvrir que le vieux mot de biscuit avait été remplacé par le mot récent de cookie, et je ressentais un léger vertige devant l’écart béant entre mon vieux monde et celui tout neuf de la jeune fille.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>ポール・ヴァレリイは同韻の二つの言葉を双児の交わす微笑に譬えている。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T131143Z" creationid="Stephane" creationdate="20241215T131143Z">
+        <seg>Paul Valéry compare deux mots qui riment à des sourires que s’échangeraient des jumeaux.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <note>Le « u » japonais se prononce comme le « ou » français.</note>
+      <tuv xml:lang="ja">
+        <seg>九鬼は「クッキーなら貰わないでもこっちから上げるよ」といって笑ったが、何かしら胸にグキット感じた。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T135127Z" creationid="Stephane" creationdate="20241215T133714Z">
+        <seg>Je lui répondis en rigolant : « Des Kouki, non merci. Ça serait plutôt à moi de vous en donner ! », et j’ai bizarrement senti mon cou qui se coinçait.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>人を馬鹿にしているこの駄洒落は異郷の旅愁をかえって慰めてくれた。旅愁は人生の旅にもおそいかかってくる。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T131111Z" creationid="Stephane" creationdate="20241215T131111Z">
+        <seg>Paradoxalement, ce calembour moqueur à l’endroit des Japonais a eu un effet bénéfique sur mon mal du pays, qui était de ceux qui s’attaquent au voyage de la vie même.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>今年の歳末にその天野君と落合太郎君と私とで寒い晩に四条通の喫茶店へ茶を飲みに行ったことがある。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T132909Z" creationid="Stephane" creationdate="20241215T132909Z">
+        <seg>À la fin de cette année, par une soirée froide, je retrouvai Amano avec Tarō Ochiai dans un salon de thé de la rue Shijō pour passer un moment avec eux.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>何のことかと聞くとデジャ（既に）ポネー（小馬）だからといった。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T110431Z" creationid="Stephane" creationdate="20241215T110431Z">
+        <seg>Quand je lui demandai pourquoi, il répondit : « Parce qu’ils sont déjà poneys. »</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>偶然の戯れが産んだ三つ児を二組紹介しても別に誰も咎める者はないだろう。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T131207Z" creationid="Stephane" creationdate="20241215T131207Z">
+        <seg>Et si le hasard facétieux met au monde des triplés, personne ne vous en voudra de les présenter quand même en deux groupes.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>偶然の産んだ駄洒落</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T105626Z" creationid="Stephane" creationdate="20241215T105626Z">
+        <seg>Calembours fortuits</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>前者は<bpt i="0" x="0">&lt;s0&gt;</bpt>同一性<ept i="0">&lt;/s0&gt;</ept>に基くものとして単に量的関係に還元され得るのに反して、後者は<bpt i="1" x="1">&lt;s1&gt;</bpt>類似性<ept i="1">&lt;/s1&gt;</ept>の基礎に質的関係を予想しているためであろう。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T134321Z" creationid="Stephane" creationdate="20241215T134321Z">
+        <seg>C’est sans doute parce que la première phrase peut simplement se ramener à une relation quantitative entre choses ayant chacunes leur <bpt i="0" x="0">&lt;s0&gt;</bpt>identité<ept i="0">&lt;/s0&gt;</ept>, alors que dans la seconde phrase, on entrevoit une relation qualitative portant sur la <bpt i="1" x="1">&lt;s1&gt;</bpt>similitude<ept i="1">&lt;/s1&gt;</ept> entre choses.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>和辻哲郎君がまだ京都にいた頃のことである。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T131344Z" creationid="Stephane" creationdate="20241215T131344Z">
+        <seg>C’était à l’époque où Tetsurō Watsuji était encore à Kyoto.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>天野君が和辻君にその由を伝えると和辻君はアナゴではなくてアマゴであることを説明した。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T132306Z" creationid="Stephane" creationdate="20241215T132014Z">
+        <seg>Amano rapporta la réponse de Nishida à Watsuji, qui lui expliqua alors que le poisson en question, ce n’était pas de l’anago, mais de l’amago.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>天野貞祐君が西田先生のところへ行ってアナゴを食べに貴船へお出になりませんかというと、先生はアナゴのような脂ッこいものはおれはいやだと答えられた。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T132040Z" creationid="Stephane" creationdate="20241215T132001Z">
+        <seg>Quand Teiyū Amano alla trouver Nishida pour lui proposer d’aller à Kibune manger de l’anago (anguille), celui-ci refusa en disant que c’était trop gras pour lui.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>給仕の少女に九鬼は紅茶とビスケットをくれないかといった。ビスケットってクッキーのことですかと少女が尋ねた。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T133306Z" creationid="Stephane" creationdate="20241215T133306Z">
+        <seg>Lorsque je commandai à la jeune serveuse du thé noir avec des biscuits, elle me demanda : « Les “biscuits”, c’est des cookies, c’est ça ? »</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>西田先生もアマゴなら食ってもいいといわれて貴船行の計画がめでたく成立った。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T132334Z" creationid="Stephane" creationdate="20241215T132334Z">
+        <seg>Apprenant cela, Nishida accepta l’invitation et finalement, tout se passa bien comme prévu.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>西田幾多郎先生をお誘いして貴船へ遠足してアマゴでも食べようということになった。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T131653Z" creationid="Stephane" creationdate="20241215T131653Z">
+        <seg>Il avait invité le professeur Kitarō Nishida à aller faire une excursion à Kibune pour y manger de l’amago (truite).</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>軽い笑は真面目な陰鬱な日常生活に朗かな影を投げる。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T110335Z" creationid="Stephane" creationdate="20241215T110335Z">
+        <seg>Le moindre petit sourire est pourtant comme un rayon de soleil sur notre quotidien sérieux et morose.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>軽い駄洒落も時には悪くない。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T105539Z" creationid="Stephane" creationdate="20241215T105539Z">
+        <seg>Certains calembours badins ne sont pas à dédaigner non plus.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>関東育ちでカントの『純粋理性批判』の訳者である天野君はアナゴは知っていたがアマゴを知らなかったのである。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T132638Z" creationid="Stephane" creationdate="20241215T132638Z">
+        <seg>Traducteur de la Critique de la raison pure de Kant élevé dans le Kantō, Amano connaissait l’anguille anago, mais pas la truite amago.</seg>
+      </tuv>
+    </tu>
+    <tu>
+      <tuv xml:lang="ja">
+        <seg>駄洒落を聞いてしらぬ顔をしたり眉をひそめたりする人間の内面生活は案外に空虚なものである。</seg>
+      </tuv>
+      <tuv xml:lang="fr" changeid="Stephane" changedate="20241215T110039Z" creationid="Stephane" creationdate="20241215T110039Z">
+        <seg>Qu’est-ce qu’elle est vide, la vie intérieure de celui qui, entendant un calembour, fronce les sourcils ou fait comme si de rien n’était !</seg>
+      </tuv>
+    </tu>
+<!-- Alternative translations -->
+  </body>
+</tmx>
