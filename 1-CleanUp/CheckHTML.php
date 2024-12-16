@@ -7,7 +7,7 @@ $config = HTMLPurifier_Config::createDefault();
 $config->set('Core.CollectErrors',1);
 $config->set('Attr.EnableID', 1);
 $config->set('HTML.Doctype', 'XHTML 1.0 Strict');
-$config->set('HTML.Allowed', 'div[class],h1[class],br,p[id],strong[class]');
+$config->set('HTML.Allowed', 'div[class],h1[class],br,p[id],i,strong[class]');
 
 // Run the checker and collect the errors
 $purifier = new HTMLPurifier($config);
