@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Extract of a single RIS bibliographic record --> 
+<!ELEMENT ris (TI|A4|AB|AU|PY|UR)*>
+ <!-- Document title -->
+<!ELEMENT TI (#PCDATA)>
+<!-- Original author name -->
+<!ELEMENT AU (#PCDATA|LAST|FIRST)*>
+<!-- Translator name -->
+<!ELEMENT A4 (#PCDATA|LAST|FIRST)*>
+<!-- Last name -->
+<!ELEMENT LAST (#PCDATA)>
+<!-- First name -->
+<!ELEMENT FIRST (#PCDATA)>
+<!-- Abstract -->
+<!ELEMENT AB (#PCDATA)>
+<!-- Publication year -->
+<!ELEMENT PY (#PCDATA)>
+<!-- URL of the Aozora Bunko card -->
+<!ELEMENT UR (#PCDATA)>
+

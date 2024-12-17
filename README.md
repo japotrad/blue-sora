@@ -49,7 +49,7 @@ blue-sora is a preparation chain generating bilingual bibk files from Aozora Bun
 ## 3. Add some extra information
 ![Add info overview](3-AddInfo.png)
 ### File description:
-- **12345-en.ris**: Single bibliographic record in [RIS format](https://en.wikipedia.org/wiki/RIS_(file_format)). Only a few tags are actually used: TI for the (English) document title, AU for the main author(s), A4 for the translator(s), PY for the publication year, AB for the abstract, UR for a back link to the original Aozora Bunko card.
+- **12345-en.ris**: Single bibliographic record in [RIS format](https://en.wikipedia.org/wiki/RIS_(file_format)). Only a few tags are actually used: TI (or T1 or CT) for the (English) document title, AU (or A1) for the main author(s), A4 for the translator(s), PY for the publication year, AB for the abstract, UR for the back link to the original Aozora Bunko card.
 - **12345-en-preface.html**: Preface or introduction to the main English translation 12345-en.html. Format: XHTML 1.0 Strict. Use CheckHTML.php to check the file `<body>` format.
 ## 4. Merge the files into a bibk file
 
