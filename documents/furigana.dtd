@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!ELEMENT furigana (furi*)>
+<!ATTLIST furigana xmlns CDATA #FIXED "https://github.com/japotrad/blue-sora/furigana">
+<!ATTLIST furigana xml:lang CDATA #FIXED "ja" >
 <!ELEMENT furi EMPTY>
 <!-- The location is the id of the segment where the furigana is located (e.g., p2).
      A space-separated list can be used (e.g. p1 p3).

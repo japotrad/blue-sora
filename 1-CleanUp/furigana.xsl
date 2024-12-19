@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xhtml="http://www.w3.org/1999/xhtml" exclude-result-prefixes="xhtml" version="1.0">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns="https://github.com/japotrad/blue-sora/furigana" exclude-result-prefixes="xhtml" version="1.0">
     <xsl:output method="xml" indent="yes" encoding="UTF-8" doctype-system="furigana.dtd"/>
     <xsl:template match="/">
-        <furigana>
+        <furigana xml:lang="ja">
             <xsl:apply-templates/>
         </furigana>
     </xsl:template>
