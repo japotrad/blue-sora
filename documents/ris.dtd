@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Extract of a single RIS bibliographic record --> 
 <!ELEMENT ris (TI|A4|AB|AU|PY|UR)*>
+<!ATTLIST ris xmlns CDATA #FIXED "https://github.com/japotrad/blue-sora/ris">
  <!-- Document title -->
 <!ELEMENT TI (#PCDATA)>
 <!-- Original author name -->

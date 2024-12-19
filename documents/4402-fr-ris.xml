@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE ris SYSTEM "ris.dtd">
-<ris>
+<ris xmlns="https://github.com/japotrad/blue-sora/ris">
   <TI>Calembours fortuits</TI>
   <AU><LAST>Kuki</LAST><FIRST>Shūzō</FIRST></AU>
   <A4>Japotrad</A4>

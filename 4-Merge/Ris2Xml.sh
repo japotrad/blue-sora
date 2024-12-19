@@ -69,7 +69,7 @@ output_file_name=$(basename ${output_path})
 # Step 0: Create the file header
 echo -e '<?xml version="1.0" encoding="UTF-8"?>' > "${output_path}"
 echo -e '<!DOCTYPE ris SYSTEM "ris.dtd">' >> "${output_path}"
-echo -e '<ris>' >> "${output_path}"
+echo -e '<ris xmlns="https://github.com/japotrad/blue-sora/ris">' >> "${output_path}"
 
 # Step 1: Process the input RIS file
 is_header=1 # The header is what is above the first line starting with "TY  - "
