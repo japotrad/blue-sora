@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<book>
-    <title>Calembours fortuits<foreignphrase role="source">偶然の産んだ駄洒落</foreignphrase>
-    </title>
-    <info/>
+<book xml:lang="fr">
+    <info>
+        <title>Calembours fortuits<foreignphrase role="source" xml:lang="ja">偶然の産んだ駄洒落</foreignphrase>
+        </title>
+    </info>
 </book>
