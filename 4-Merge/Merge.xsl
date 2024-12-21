@@ -34,6 +34,61 @@
                     <xsl:copy-of select="$risDoc/r:ris/r:AB/text()"/>
                 </para>
             </abstract>
+            <authorgroup>
+                <author>
+                    <xsl:variable name="jaAuthor" select="h:html/h:head/h:meta[@name='author']/@content"/><!-- There is no clue about how to decompose this name into first name and last name -->
+                    <xsl:variable name="jaAuthorStart" select="substring($jaAuthor,1,string-length($jaAuthor) div 2)"/>
+                    <xsl:variable name="jaAuthorEnd" select="substring-after($jaAuthor,$jaAuthorStart)"/>
+                    <xsl:variable name="isPerson" select="$risDoc/r:ris/r:AU/r:LAST or $risDoc/r:ris/r:AU/r:FIRST"/>
+                    <xsl:if test="$isPerson">
+                        <xsl:message>Warning: Arbitrarily set the Japanese author first name as <xsl:value-of select="$jaAuthorEnd"/>, and last name as <xsl:value-of select="$jaAuthorStart"/></xsl:message>
+                        <personname>
+                            <xsl:if test="$risDoc/r:ris/r:AU/r:FIRST">
+                                <firstname>
+                                    <xsl:copy-of select="$risDoc/r:ris/r:AU/r:FIRST/text()"/>
+                                    <foreignphrase role="source" xml:lang="ja"><xsl:value-of select="$jaAuthorEnd"/></foreignphrase>
+                                </firstname>
+                            </xsl:if>
+                            <xsl:if test="$risDoc/r:ris/r:AU/r:LAST">
+                                <surname>
+                                    <xsl:copy-of select="$risDoc/r:ris/r:AU/r:LAST/text()"/>
+                                    <foreignphrase role="source" xml:lang="ja"><xsl:value-of select="$jaAuthorStart"/></foreignphrase>
+                                </surname>
+                            </xsl:if>
+                        </personname>
+                    </xsl:if>
+                    <xsl:if test="not($isPerson)">
+                        <orgname>
+                            <xsl:copy-of select="$risDoc/r:ris/r:AU/text()"/>
+                            <foreignphrase role="source" xml:lang="ja"><xsl:value-of select="$jaAuthor"/></foreignphrase>
+                        </orgname>
+                    </xsl:if>
+                </author>
+                <xsl:if test="$risDoc/r:ris/r:A4"><!-- Add translator's name -->
+                <othercredit class="translator">
+                    <xsl:variable name="isPerson" select="$risDoc/r:ris/r:A4/r:LAST or $risDoc/r:ris/r:A4/r:FIRST"/>
+                    <xsl:if test="$isPerson">
+                        <personname>
+                            <xsl:if test="$risDoc/r:ris/r:A4/r:FIRST">
+                                <firstname>
+                                    <xsl:copy-of select="$risDoc/r:ris/r:A4/r:FIRST/text()"/>
+                                </firstname>
+                            </xsl:if>
+                            <xsl:if test="$risDoc/r:ris/r:A4/r:LAST">
+                                <surname>
+                                    <xsl:copy-of select="$risDoc/r:ris/r:A4/r:LAST/text()"/>
+                                </surname>
+                            </xsl:if>
+                        </personname>
+                    </xsl:if>
+                    <xsl:if test="not($isPerson)">
+                        <orgname>
+                            <xsl:copy-of select="$risDoc/r:ris/r:A4/text()"/>
+                        </orgname>
+                    </xsl:if>
+                </othercredit>
+                </xsl:if>
+            </authorgroup>
             <pubdate>
                 <xsl:copy-of select="$risDoc/r:ris/r:PY/text()"/>
             </pubdate>
