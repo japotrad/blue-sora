@@ -89,9 +89,11 @@
                 </othercredit>
                 </xsl:if>
             </authorgroup>
-            <pubdate>
-                <xsl:copy-of select="$risDoc/r:ris/r:PY/text()"/>
-            </pubdate>
+            <xsl:if test="$risDoc/r:ris/r:PY">
+                <pubdate>
+                    <xsl:copy-of select="$risDoc/r:ris/r:PY/text()"/>
+                </pubdate>
+            </xsl:if>
         </info>
     </xsl:template>
     
