@@ -1,6 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <book xml:lang="fr">
     <info>
         <title>Calembours fortuits<foreignphrase role="source" xml:lang="ja">偶然の産んだ駄洒落</foreignphrase>
         </title>
+        <abstract>
+            <para>Que ce soit à Paris en français dans les années 1920 ou à Kyoto en japonais dans les années 1930, les jeux de mots que Kuki rencontre par hasard dans sa vie personnelle viennent nourrir sa réflexion et égayer son quotidien.</para>
+        </abstract>
+        <pubdate>2024</pubdate>
     </info>
 </book>
