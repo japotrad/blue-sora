@@ -29,6 +29,14 @@
                 <xsl:copy-of select="$risDoc/r:ris/r:TI/text()"/>
                 <foreignphrase role="source" xml:lang="ja"><xsl:value-of select="h:html/h:body/h:h1[@class='title']"/></foreignphrase>
             </title>
+            <abstract>
+                <para>
+                    <xsl:copy-of select="$risDoc/r:ris/r:AB/text()"/>
+                </para>
+            </abstract>
+            <pubdate>
+                <xsl:copy-of select="$risDoc/r:ris/r:PY/text()"/>
+            </pubdate>
         </info>
     </xsl:template>
     
