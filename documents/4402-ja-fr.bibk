@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<book xml:lang="fr">
+   <info>
+      <title>Calembours fortuits<foreignphrase role="source" xml:lang="ja">偶然の産んだ駄洒落</foreignphrase>
+      </title>
+      <abstract>
+         <para>Que ce soit à Paris en français dans les années 1920 ou à Kyoto en japonais dans les années 1930, les jeux de mots que Kuki rencontre par hasard dans sa vie personnelle viennent nourrir sa réflexion et égayer son quotidien.</para>
+      </abstract>
+      <authorgroup>
+         <author>
+            <personname>
+               <firstname>Shūzō<foreignphrase role="source" xml:lang="ja">周造</foreignphrase>
+               </firstname>
+               <surname>Kuki<foreignphrase role="source" xml:lang="ja">九鬼</foreignphrase>
+               </surname>
+            </personname>
+         </author>
+         <othercredit class="translator">
+            <orgname>Japotrad</orgname>
+         </othercredit>
+      </authorgroup>
+      <pubdate>2024</pubdate>
+   </info>
+   <preface>
+      <title>Note du traducteur</title>
+      <para>Collections d’anecdotes rapportées par Shūzō Kuki en 1936. Le terme 偶然 est habituellement traduit par « contingent », mais on a préféré ici le mot plus courant « fortuit » afin de respecter la légèreté du texte. La seconde anecdote fait référence à la deuxième strophe du poème  de Paul Valéry. Enfin, afin de restituer les sonorités du calembour final, il a fallu transcrire le nom de l’auteur par « Kouki » et transposer la « douleur soudaine dans la poitrine » en « cou qui coince ».</para>
+   </preface>
+</book>
