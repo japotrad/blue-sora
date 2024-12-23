@@ -31,12 +31,12 @@
             </xsl:attribute>
             <xsl:call-template name="info"/>
             <xsl:if test="not(doc-available($preface))">
-                <xsl:message>Info: No preface is generated, because no file has been found at:
-                        <xsl:value-of select="$preface"/></xsl:message>
+                <xsl:message>Info: No preface is generated, because no file has been found at: <xsl:value-of select="$preface"/></xsl:message>
             </xsl:if>
             <xsl:if test="doc-available($preface)">
-                <xsl:message>Info: Processing <xsl:value-of select="$preface"/></xsl:message>
+                <xsl:message>Info: Start processing <xsl:value-of select="$preface"/></xsl:message>
                 <xsl:call-template name="preface"/>
+                <xsl:message>Info: End processing <xsl:value-of select="$preface"/></xsl:message>
             </xsl:if>
         </book>
     </xsl:template>
