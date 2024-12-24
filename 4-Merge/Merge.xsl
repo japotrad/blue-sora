@@ -38,8 +38,20 @@
                 <xsl:call-template name="preface"/>
                 <xsl:message>Info: End processing <xsl:value-of select="$preface"/></xsl:message>
             </xsl:if>
+            <xsl:if test="not(//h:h3) and not(//h:h4)">
+                <xsl:message>Info: Start processing <xsl:value-of select="base-uri()"/> as an article</xsl:message>
+                <xsl:call-template name="article"/>
+                <xsl:message>Info: End processing the article <xsl:value-of select="base-uri()"/></xsl:message>
+            </xsl:if>
         </book>
     </xsl:template>
+    <xsl:template name="article">
+        <article>
+            <xsl:apply-templates/>
+        </article>
+    </xsl:template>
+    <xsl:template match="h:h1"/> <!-- The document title is retrieved in the info template -->
+    <xsl:template match="h:head"/>
     <xsl:template name="info">
         <xsl:variable name="risDoc" select="document($ris)"/>
         <info>
@@ -132,10 +144,16 @@
         </info>
     </xsl:template>
     <!-- End of info element -->
+    <xsl:template match="h:p">
+        <xsl:call-template name="para">
+            <xsl:with-param name="p" select="."/>
+        </xsl:call-template>
+    </xsl:template>
     <xsl:template name="para">
         <xsl:param name="p"/>
         <para>
-            <xsl:copy-of select="$p/text()"/>
+            <xsl:if test="string($p[@id])"><xsl:attribute name="xml:id"><xsl:value-of select="$p/@id"/></xsl:attribute></xsl:if>
+            <xsl:apply-templates/>
         </para>
     </xsl:template>
     <xsl:template name="preface">
@@ -152,4 +170,10 @@
         </preface>
     </xsl:template>
     <!-- End of preface element -->
+    <xsl:template match="h:strong">
+        <emphasis>
+            <xsl:if test="string(.[@class])"><xsl:attribute name="role"><xsl:value-of select="./@class"/></xsl:attribute></xsl:if>
+            <xsl:apply-templates/>
+        </emphasis>
+    </xsl:template>
 </xsl:stylesheet>
