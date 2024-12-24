@@ -28,7 +28,7 @@
       </bpmn:dataOutputAssociation>
     </bpmn:task>
     <bpmn:sequenceFlow id="Flow_110jjn3" sourceRef="Activity_1lwcu5b" targetRef="Activity_11o5xie" />
-    <bpmn:dataObjectReference id="DataObjectReference_18g07su" name="12345-jis.html" dataObjectRef="DataObject_0sen1cr" />
+    <bpmn:dataObjectReference id="DataObjectReference_18g07su" name="12345_jis.html" dataObjectRef="DataObject_0sen1cr" />
     <bpmn:dataObject id="DataObject_0sen1cr" />
     <bpmn:task id="Activity_05vk0xy" name="Extract furigana">
       <bpmn:documentation>Generate an XML file containing only furigana, along with their location in the file.</bpmn:documentation>
@@ -43,7 +43,7 @@
         <bpmn:targetRef>DataObjectReference_0nqg1rv</bpmn:targetRef>
       </bpmn:dataOutputAssociation>
     </bpmn:task>
-    <bpmn:dataObjectReference id="DataObjectReference_0nqg1rv" name="12345-furigana.xml" dataObjectRef="DataObject_0w03yd7" />
+    <bpmn:dataObjectReference id="DataObjectReference_0nqg1rv" name="12345_furigana.xml" dataObjectRef="DataObject_0w03yd7" />
     <bpmn:dataObject id="DataObject_0w03yd7" />
     <bpmn:task id="Activity_0gr72c1" name="Extract notes">
       <bpmn:documentation>Generate an XML file containing only Aozora's notes, along with their location in the file.</bpmn:documentation>
@@ -59,7 +59,7 @@
       </bpmn:dataOutputAssociation>
     </bpmn:task>
     <bpmn:sequenceFlow id="Flow_12o44n1" sourceRef="Activity_05vk0xy" targetRef="Activity_0gr72c1" />
-    <bpmn:dataObjectReference id="DataObjectReference_1a9pnm5" name="12345-note.xml" dataObjectRef="DataObject_0na790x" />
+    <bpmn:dataObjectReference id="DataObjectReference_1a9pnm5" name="12345_note.xml" dataObjectRef="DataObject_0na790x" />
     <bpmn:dataObject id="DataObject_0na790x" />
     <bpmn:task id="Activity_03duhat" name="Check HTML">
       <bpmn:documentation>Check conformance to a simplified XHTML format.</bpmn:documentation>
@@ -76,9 +76,9 @@
       <bpmn:incoming>Flow_1xzvntu</bpmn:incoming>
     </bpmn:endEvent>
     <bpmn:sequenceFlow id="Flow_1xzvntu" sourceRef="Activity_03duhat" targetRef="Event_10ip66g" />
-    <bpmn:dataObjectReference id="DataObjectReference_0onhsq5" name="12345-ja.html" dataObjectRef="DataObject_06em9sg" />
+    <bpmn:dataObjectReference id="DataObjectReference_0onhsq5" name="12345_ja.html" dataObjectRef="DataObject_06em9sg" />
     <bpmn:dataObject id="DataObject_06em9sg" />
-    <bpmn:dataObjectReference id="DataObjectReference_0ccshrh" name="12345-utf.html" dataObjectRef="DataObject_05ps03d" />
+    <bpmn:dataObjectReference id="DataObjectReference_0ccshrh" name="12345_utf.html" dataObjectRef="DataObject_05ps03d" />
     <bpmn:dataObject id="DataObject_05ps03d" />
     <bpmn:sequenceFlow id="Flow_1o99cb6" sourceRef="Activity_11o5xie" targetRef="Activity_101xl43" />
     <bpmn:task id="Activity_0bde511" name="Clean HTML">
@@ -156,7 +156,7 @@
       <bpmndi:BPMNShape id="DataObjectReference_18g07su_di" bpmnElement="DataObjectReference_18g07su" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
         <dc:Bounds x="352" y="245" width="36" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="335" y="303" width="69" height="14" />
+          <dc:Bounds x="334" y="303" width="72" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_05vk0xy_di" bpmnElement="Activity_05vk0xy">
@@ -166,7 +166,7 @@
       <bpmndi:BPMNShape id="DataObjectReference_0nqg1rv_di" bpmnElement="DataObjectReference_0nqg1rv" bioc:stroke="#43a047" bioc:fill="#c8e6c9" color:background-color="#c8e6c9" color:border-color="#43a047">
         <dc:Bounds x="812" y="152" width="36" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="801" y="209" width="60" height="27" />
+          <dc:Bounds x="788" y="209" width="86" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0gr72c1_di" bpmnElement="Activity_0gr72c1">
@@ -176,7 +176,7 @@
       <bpmndi:BPMNShape id="DataObjectReference_1a9pnm5_di" bpmnElement="DataObjectReference_1a9pnm5" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
         <dc:Bounds x="812" y="372" width="36" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="792" y="429" width="77" height="14" />
+          <dc:Bounds x="791" y="429" width="79" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_03duhat_di" bpmnElement="Activity_03duhat">
@@ -189,13 +189,13 @@
       <bpmndi:BPMNShape id="DataObjectReference_0onhsq5_di" bpmnElement="DataObjectReference_0onhsq5" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
         <dc:Bounds x="472" y="275" width="36" height="50" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="446" y="251" width="67" height="14" />
+          <dc:Bounds x="445" y="251" width="70" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="DataObjectReference_0ccshrh_di" bpmnElement="DataObjectReference_0ccshrh" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
         <dc:Bounds x="562" y="255" width="36" height="50" />
         <bpmndi:BPMNLabel color:color="#fb8c00">
-          <dc:Bounds x="604" y="273" width="71" height="14" />
+          <dc:Bounds x="603" y="273" width="74" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0bde511_di" bpmnElement="Activity_0bde511">
