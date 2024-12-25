@@ -7,22 +7,18 @@
     <xsl:variable name="base-uri-radical" select="substring-before(base-uri(),'_')"/> <!-- URI to process truncated before the language code -->
     <xsl:param name="lang" select="substring-after(substring-before(base-uri(), '.html'),'_')"/>
     <!-- 2-letter code of the language the document has been translated into -->
+    <xsl:param name="ris" select="concat(substring-before(base-uri(), '.html'), '_ris.xml')"/>
+    <!-- Full path to the RIS XML file -->
     <xsl:param name="furi" select="concat($base-uri-radical, '_furigana.xml')"/>
     <!-- Full path to the furigana file -->
     <xsl:param name="note" select="concat($base-uri-radical, '_note.xml')"/>
     <!-- Full path to the note file -->
-    <xsl:param name="ori" select="concat($base-uri-radical, '_ja.html')"/>
-    <!-- Full path to the original HTML file in Japanese -->
+    <xsl:param name="preface" select="concat(substring-before(base-uri(), '.html'), '_preface.html')"/>
+    <!-- Full path to the preface file in the above language -->
+    <xsl:param name="ja" select="concat($base-uri-radical, '_ja.html')"/>
+    <!-- Full path to the HTML document file in Japanese -->
     <xsl:param name="tmx" select="concat(substring-before(base-uri(), '.html'), '.tmx')"/>
     <!-- Full path to the translation memory file -->
-    <xsl:param name="preface"
-        select="concat(substring-before(base-uri(), '.html'), '_preface.html')"/>
-    <!-- Full path to the preface file in the above language -->
-    <xsl:param name="ris"
-        select="concat(substring-before(base-uri(), '.html'), '_ris.xml')"/>
-    <!-- Full path to the RIS XML file -->
-    <!--xsl:variable name="merge_param" select="concat(resolve-uri('.'), 'merge-', $lang, '.xml')"/-->
-    <!-- Full path to the parameter file containing the localized strings for this XSL stylesheet -->
     <xsl:output method="xml" encoding="UTF-8" indent="yes" omit-xml-declaration="no"/>
 
     <xsl:template match="/">
@@ -55,7 +51,7 @@
     <xsl:template match="h:head"/>
     <xsl:template name="info">
         <xsl:variable name="risDoc" select="document($ris)"/>
-        <xsl:variable name="oriDoc" select="document($ori)"/>
+        <xsl:variable name="jaDoc" select="document($ja)"/>
         <info>
             <title>
                 <xsl:copy-of select="$risDoc/r:ris/r:TI/text()"/>
@@ -71,7 +67,7 @@
             <authorgroup>
                 <author>
                     <xsl:variable name="jaAuthor"
-                        select="$oriDoc/h:html/h:head/h:meta[@name = 'author']/@content"/>
+                        select="$jaDoc/h:html/h:head/h:meta[@name = 'author']/@content"/>
                     <!-- There is no clue about how to decompose this name into first name and last name -->
                     <xsl:variable name="jaAuthorStart"
                         select="substring($jaAuthor, 1, string-length($jaAuthor) div 2)"/>
