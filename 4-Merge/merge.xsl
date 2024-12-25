@@ -150,8 +150,17 @@
     <xsl:template name="para">
         <xsl:param name="p"/>
         <para>
-            <xsl:if test="string($p[@id])"><xsl:attribute name="xml:id"><xsl:value-of select="$p/@id"/></xsl:attribute></xsl:if>
+            <xsl:if test="string($p[@id])">
+                <xsl:attribute name="xml:id"><xsl:value-of select="$p/@id"/></xsl:attribute>
+            </xsl:if>
             <xsl:apply-templates/>
+            <xsl:if test="string($p[@id])">
+                <xsl:variable name="jaDoc" select="document($ja)"/>
+                <xsl:variable name="jaSource" select="$jaDoc/h:html/h:body//h:p[@id = $p/@id]"/>
+                <foreignphrase role="source" xml:lang="ja">
+                    <xsl:apply-templates select="$jaSource/node()|text()"/>
+                </foreignphrase>
+            </xsl:if>
         </para>
     </xsl:template>
     <xsl:template name="preface">
