@@ -9,13 +9,6 @@
             <xsl:apply-templates />
         </xsl:element>
     </xsl:template>
-    <xsl:template match="xhtml:html">
-        <xsl:element name="html" namespace="http://www.w3.org/1999/xhtml">
-            <xsl:attribute name="lang">ja</xsl:attribute>
-            <xsl:attribute name="xml:lang">ja</xsl:attribute>
-            <xsl:apply-templates />
-        </xsl:element>
-    </xsl:template>
     <xsl:template match="xhtml:meta[@http-equiv='content-style-type']"/>
     <xsl:template match="xhtml:meta[@name]">
         <xsl:if test="@name='DC.Creator'">

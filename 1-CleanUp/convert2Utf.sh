@@ -86,6 +86,9 @@ while IFS= read -r line
 	if [[ "$line" == *"<div class=\"bibliographical_information\">"* ]]; then
 	  is_footer=1
 	fi
+	if [[ "$line" == *"xmlns=\"http://www.w3.org/1999/xhtml\""* ]]; then
+	  line="<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"ja\" xml:lang=\"ja\">"
+	fi
 	if [ $is_header -eq 0 ] && [ $is_footer -eq 0 ]; then #if we are in the main text
 	  if [[ "$line" == *"<div"* ]]; then 
 	    line=${line/<div/<div id=\"d${div_id}\"} # add id attribut to div tags
