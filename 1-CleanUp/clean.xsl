@@ -10,14 +10,6 @@
         </xsl:element>
     </xsl:template>
     <xsl:template match="xhtml:meta[@http-equiv='content-style-type']"/>
-    <xsl:template match="xhtml:meta[@name]">
-        <xsl:if test="@name='DC.Creator'">
-            <xsl:element name="meta" namespace="http://www.w3.org/1999/xhtml">
-                <xsl:attribute name="name">author</xsl:attribute>
-                <xsl:attribute name="content"><xsl:value-of select="@content"/></xsl:attribute>
-            </xsl:element>
-        </xsl:if>
-    </xsl:template>
     <xsl:template match="xhtml:ruby">
         <xsl:value-of select="xhtml:rb"/>
     </xsl:template>
