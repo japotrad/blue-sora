@@ -77,14 +77,14 @@
       </bpmn:dataOutputAssociation>
     </bpmn:task>
     <bpmn:sequenceFlow id="Flow_06f2ifs" sourceRef="Activity_1gztyss" targetRef="Activity_1posdmj" />
-    <bpmn:sequenceFlow id="Flow_08gb3am" sourceRef="Activity_02xrwl2" targetRef="Activity_1iimr8x" />
-    <bpmn:sequenceFlow id="Flow_09uwo7k" sourceRef="Activity_1tdnzl1" targetRef="Activity_1gztyss" />
+    <bpmn:sequenceFlow id="Flow_08gb3am" sourceRef="Activity_0d8yu8b" targetRef="Activity_1iimr8x" />
+    <bpmn:sequenceFlow id="Flow_09uwo7k" sourceRef="Activity_1dgl42x" targetRef="Activity_1gztyss" />
     <bpmn:sequenceFlow id="Flow_0hgwff0" sourceRef="Activity_1iimr8x" targetRef="Gateway_0usg8o8" />
     <bpmn:sequenceFlow id="Flow_0hhmcbf" sourceRef="Activity_1posdmj" targetRef="Gateway_0usg8o8" />
-    <bpmn:sequenceFlow id="Flow_0y45h80" sourceRef="Activity_11o5xie" targetRef="Activity_02xrwl2" />
+    <bpmn:sequenceFlow id="Flow_0y45h80" sourceRef="Activity_11o5xie" targetRef="Activity_0d8yu8b" />
     <bpmn:sequenceFlow id="Flow_10b9ppo" sourceRef="Gateway_0usg8o8" targetRef="Event_0oj4a66" />
     <bpmn:sequenceFlow id="Flow_1po6hgn" sourceRef="StartEvent_1" targetRef="Gateway_195qoq3" />
-    <bpmn:sequenceFlow id="Flow_1vhkwtc" sourceRef="Activity_06jeq7d" targetRef="Activity_1tdnzl1" />
+    <bpmn:sequenceFlow id="Flow_1vhkwtc" sourceRef="Activity_06jeq7d" targetRef="Activity_1dgl42x" />
     <bpmn:parallelGateway id="Gateway_0usg8o8">
       <bpmn:incoming>Flow_0hgwff0</bpmn:incoming>
       <bpmn:incoming>Flow_0hhmcbf</bpmn:incoming>
@@ -99,14 +99,14 @@
     <bpmn:sequenceFlow id="Flow_0hrv3g3" name="Trados&#10;Studio" sourceRef="Gateway_195qoq3" targetRef="Activity_06jeq7d">
       <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">=TradosStudio</bpmn:conditionExpression>
     </bpmn:sequenceFlow>
-    <bpmn:task id="Activity_02xrwl2" name="Translate&#10;with OmegaT">
+    <bpmn:userTask id="Activity_0d8yu8b" name="Translate&#10;with OmegaT">
       <bpmn:incoming>Flow_0y45h80</bpmn:incoming>
       <bpmn:outgoing>Flow_08gb3am</bpmn:outgoing>
-    </bpmn:task>
-    <bpmn:task id="Activity_1tdnzl1" name="Translate&#10;with Trados">
+    </bpmn:userTask>
+    <bpmn:userTask id="Activity_1dgl42x" name="Translate&#10;with Trados">
       <bpmn:incoming>Flow_1vhkwtc</bpmn:incoming>
       <bpmn:outgoing>Flow_09uwo7k</bpmn:outgoing>
-    </bpmn:task>
+    </bpmn:userTask>
     <bpmn:textAnnotation id="TextAnnotation_1i916jv">
       <bpmn:text>tmx.xsl</bpmn:text>
     </bpmn:textAnnotation>
@@ -179,11 +179,11 @@
       <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
         <dc:Bounds x="192" y="209" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_02xrwl2_di" bpmnElement="Activity_02xrwl2">
-        <dc:Bounds x="450" y="80" width="100" height="80" />
+      <bpmndi:BPMNShape id="Activity_0d8yu8b_di" bpmnElement="Activity_0d8yu8b">
+        <dc:Bounds x="460" y="80" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Activity_1tdnzl1_di" bpmnElement="Activity_1tdnzl1">
+      <bpmndi:BPMNShape id="Activity_1dgl42x_di" bpmnElement="Activity_1dgl42x">
         <dc:Bounds x="380" y="300" width="100" height="80" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
@@ -237,7 +237,7 @@
         <di:waypoint x="660" y="340" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_08gb3am_di" bpmnElement="Flow_08gb3am">
-        <di:waypoint x="550" y="120" />
+        <di:waypoint x="560" y="120" />
         <di:waypoint x="660" y="120" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_09uwo7k_di" bpmnElement="Flow_09uwo7k">
@@ -254,7 +254,7 @@
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_0y45h80_di" bpmnElement="Flow_0y45h80">
         <di:waypoint x="340" y="120" />
-        <di:waypoint x="450" y="120" />
+        <di:waypoint x="460" y="120" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_10b9ppo_di" bpmnElement="Flow_10b9ppo">
         <di:waypoint x="765" y="227" />
