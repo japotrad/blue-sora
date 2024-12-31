@@ -12,7 +12,7 @@ blue-sora is a preparation chain generating bilingual bibk files from Aozora Bun
 - **12345_en_preface.html**: A preface for English readers, in HTML format.
 - **12345.bibk**: Bilingual book in an XML format similar to DocBook V5.x.
 ## 1. Clean up the HTML file in Japanese
-<img alt="Clean up overview" src="https://github.com/japotrad/blue-sora/raw/main/1-CleanUp.png" width="700"/>
+![Clean up overview](1-CleanUp.png)
 
 ### File description:
 - **12345_jis.html**: HTML file available on Aozora.gr.jp. 12345 corresponds typically to the Aozora Bunko Card number, but you can use another naming convention.
