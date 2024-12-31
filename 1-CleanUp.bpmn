@@ -78,7 +78,7 @@
     <bpmn:sequenceFlow id="Flow_1xzvntu" sourceRef="Activity_03duhat" targetRef="Event_10ip66g" />
     <bpmn:dataObjectReference id="DataObjectReference_0onhsq5" name="12345_ja.html" dataObjectRef="DataObject_06em9sg" />
     <bpmn:dataObject id="DataObject_06em9sg" />
-    <bpmn:dataObjectReference id="DataObjectReference_0ccshrh" name="12345_utf.html" dataObjectRef="DataObject_05ps03d" />
+    <bpmn:dataObjectReference id="DataObjectReference_0ccshrh" name="12345_rich.html" dataObjectRef="DataObject_05ps03d" />
     <bpmn:dataObject id="DataObject_05ps03d" />
     <bpmn:sequenceFlow id="Flow_1o99cb6" sourceRef="Activity_11o5xie" targetRef="Activity_101xl43" />
     <bpmn:task id="Activity_0bde511" name="Clean HTML">
@@ -195,7 +195,7 @@
       <bpmndi:BPMNShape id="DataObjectReference_0ccshrh_di" bpmnElement="DataObjectReference_0ccshrh" bioc:stroke="#fb8c00" bioc:fill="#ffe0b2" color:background-color="#ffe0b2" color:border-color="#fb8c00">
         <dc:Bounds x="562" y="255" width="36" height="50" />
         <bpmndi:BPMNLabel color:color="#fb8c00">
-          <dc:Bounds x="603" y="273" width="74" height="14" />
+          <dc:Bounds x="601" y="273" width="79" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_0bde511_di" bpmnElement="Activity_0bde511">

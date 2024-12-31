@@ -179,9 +179,12 @@ while IFS= read -r line
 	if [[ "$line" == *"<title>"* ]]; then # Overwrite title metadata with the output file name
 	  line=${line/<title>[^<]*<\/title>/<title>From ${output_file_name}<\/title>}
 	fi
-    if [ $is_footer -eq 0 ]; then # Do not output the footer 
-	  echo -e "$line" >> "${temp_path}/${input_file_name}-3"
+    if [ $is_footer -eq 1 ] || [[ "$line" == *"http-equiv=\"content-style-type\""* ]] || [[ "$line" == *"rel=\"DC.Schema\""* ]] || [[ "$line" == *"name=\"DC.Publisher\""* ]] || [[ "$line" == *"class=\"author\""* ]]; then 
+	  continue # Remove some lines
 	fi
+	
+	echo -e "$line" >> "${temp_path}/${input_file_name}-3"
+
 	if [[ "$line" == *"<div class=\"main_text\">"* ]]; then
 	  is_header=0
 	fi
