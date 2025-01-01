@@ -120,9 +120,9 @@
           <dc:Bounds x="525" y="177" width="38" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="DataObjectReference_0p6z6ty_di" bpmnElement="DataObjectReference_0p6z6ty">
+      <bpmndi:BPMNShape id="DataObjectReference_0p6z6ty_di" bpmnElement="DataObjectReference_0p6z6ty" bioc:stroke="#e53935" bioc:fill="#ffcdd2" color:background-color="#ffcdd2" color:border-color="#e53935">
         <dc:Bounds x="664" y="202" width="36" height="50" />
-        <bpmndi:BPMNLabel>
+        <bpmndi:BPMNLabel color:color="#e53935">
           <dc:Bounds x="619" y="213" width="38" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
@@ -200,7 +200,7 @@
         <di:waypoint x="665" y="405" />
         <di:waypoint x="680" y="380" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_1e1vryg_di" bpmnElement="DataOutputAssociation_1e1vryg">
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1e1vryg_di" bpmnElement="DataOutputAssociation_1e1vryg" bioc:stroke="#e53935" color:border-color="#e53935">
         <di:waypoint x="680" y="300" />
         <di:waypoint x="680" y="252" />
       </bpmndi:BPMNEdge>
@@ -216,7 +216,7 @@
         <di:waypoint x="660" y="150" />
         <di:waypoint x="562" y="219" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="DataOutputAssociation_1vxri2i_di" bpmnElement="DataOutputAssociation_1vxri2i">
+      <bpmndi:BPMNEdge id="DataOutputAssociation_1vxri2i_di" bpmnElement="DataOutputAssociation_1vxri2i" bioc:stroke="#e53935" color:border-color="#e53935">
         <di:waypoint x="680" y="160" />
         <di:waypoint x="680" y="202" />
       </bpmndi:BPMNEdge>
