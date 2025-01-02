@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:h="http://www.w3.org/1999/xhtml"
-    xmlns:r="https://github.com/japotrad/blue-sora/ris"
-    xmlns:f="https://github.com/japotrad/blue-sora/furigana" exclude-result-prefixes="xs h r f"
+    xmlns:r="https://github.com/japotrad/blue-sora/ris" exclude-result-prefixes="xs h r"
     version="2.0">
     <xsl:variable name="base-uri-radical" select="substring-before(base-uri(),'_')"/> <!-- URI to process truncated before the language code -->
     <xsl:param name="lang" select="substring-after(substring-before(base-uri(), '.html'),'_')"/>
     <!-- 2-letter code of the language the document has been translated into -->
     <xsl:param name="ris" select="concat(substring-before(base-uri(), '.html'), '_ris.xml')"/>
     <!-- Full path to the RIS XML file -->
-    <xsl:param name="furi" select="concat($base-uri-radical, '_furigana.xml')"/>
-    <!-- Full path to the furigana file -->
-    <xsl:param name="note" select="concat($base-uri-radical, '_note.xml')"/>
-    <!-- Full path to the note file -->
     <xsl:param name="preface" select="concat(substring-before(base-uri(), '.html'), '_preface.html')"/>
     <!-- Full path to the preface file in the above language -->
     <xsl:param name="ja" select="concat($base-uri-radical, '_ja.html')"/>
