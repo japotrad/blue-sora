@@ -15,8 +15,10 @@
     <xsl:param name="tmx" select="concat(substring-before(base-uri(), '.html'), '.tmx')"/>
     <!-- Full path to the translation memory file -->
     <xsl:output method="xml" encoding="UTF-8" indent="yes" omit-xml-declaration="no"/>
-
+    <xsl:variable name="translatorNotes" select="document($tmx)/tmx/body/tu[note]"/>
     <xsl:template match="/">
+        <xsl:message>translatorNotes
+            <xsl:value-of select="$translatorNotes"/></xsl:message>
         <book>
             <xsl:attribute name="xml:lang">
                 <xsl:value-of select="$lang"/>
@@ -148,12 +150,12 @@
             <xsl:if test="string($p[@id])">
                 <xsl:attribute name="xml:id"><xsl:value-of select="$p/@id"/></xsl:attribute>
             </xsl:if>
-            <xsl:apply-templates/>
+            <xsl:apply-templates />
             <xsl:if test="string($p[@id])">
                 <xsl:variable name="jaDoc" select="document($ja)"/>
                 <xsl:variable name="jaSource" select="$jaDoc/h:html/h:body//h:p[@id = $p/@id]"/>
                 <foreignphrase role="source" xml:lang="ja">
-                    <xsl:apply-templates select="$jaSource/node()|text()"/>
+                    <xsl:apply-templates select="$jaSource/node()|$jaSource/text()"/>
                 </foreignphrase>
             </xsl:if>
         </para>
@@ -177,5 +179,20 @@
             <xsl:if test="string(.[@class])"><xsl:attribute name="role"><xsl:value-of select="./@class"/></xsl:attribute></xsl:if>
             <xsl:apply-templates/>
         </emphasis>
+    </xsl:template>
+    <!-- End of strong element -->
+    <xsl:template match="text()">
+        <xsl:variable name="txt"><xsl:value-of select="."/></xsl:variable>
+        <xsl:variable name="annotatedTU">
+            <xsl:for-each select="$translatorNotes">
+                <xsl:if test="contains($txt,./tuv[@xml:lang=$lang]/seg)">
+                    <xsl:copy-of select="."/>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:if test="$annotatedTU=''">
+            <xsl:value-of select="$txt"/>
+        </xsl:if>
+        <xsl:if test="not($annotatedTU='')"><xsl:value-of select="substring-before($txt,$annotatedTU/tu/tuv[@xml:lang=$lang]/seg)"/><xsl:value-of select="$annotatedTU/tu/tuv[@xml:lang=$lang]/seg"/><footnote><para><xsl:value-of select="$annotatedTU/tu/note"/></para></footnote><xsl:value-of select="substring-after($txt,$annotatedTU/tu/tuv[@xml:lang=$lang]/seg)"/></xsl:if>
     </xsl:template>
 </xsl:stylesheet>
