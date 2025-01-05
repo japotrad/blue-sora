@@ -10,7 +10,7 @@
     <!-- Full path to the RIS XML file -->
     <xsl:param name="preface" select="concat(substring-before(base-uri(), '.html'), '_preface.html')"/>
     <!-- Full path to the preface file in the above language -->
-    <xsl:param name="ja" select="concat($base-uri-radical, '_ja.html')"/>
+    <xsl:param name="ja" select="concat($base-uri-radical, '_rich.html')"/>
     <!-- Full path to the HTML document file in Japanese -->
     <xsl:param name="tmx" select="concat(substring-before(base-uri(), '.html'), '.tmx')"/>
     <!-- Full path to the translation memory file -->
