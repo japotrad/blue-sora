@@ -14,11 +14,9 @@
     <!-- Full path to the HTML document file in Japanese -->
     <xsl:param name="tmx" select="concat(substring-before(base-uri(), '.html'), '.tmx')"/>
     <!-- Full path to the translation memory file -->
-    <xsl:output method="xml" encoding="UTF-8" indent="yes" omit-xml-declaration="no"/>
+    <xsl:output method="xml" encoding="UTF-8" indent="no" omit-xml-declaration="no"/>
     <xsl:variable name="translatorNotes" select="document($tmx)/tmx/body/tu[note]"/>
     <xsl:template match="/">
-        <xsl:message>translatorNotes
-            <xsl:value-of select="$translatorNotes"/></xsl:message>
         <book>
             <xsl:attribute name="xml:lang">
                 <xsl:value-of select="$lang"/>
@@ -40,10 +38,10 @@
         </book>
     </xsl:template>
     <xsl:template name="article">
-        <article>
-            <xsl:apply-templates/>
-        </article>
+        <article><xsl:apply-templates/></article>
     </xsl:template>
+    <xsl:template match="h:body/text()"/>
+    <xsl:template match="h:div/text()"/>
     <xsl:template match="h:h1"/> <!-- The document title is retrieved in the info template -->
     <xsl:template match="h:head"/>
     <xsl:template name="info">
@@ -52,9 +50,9 @@
         <info>
             <title>
                 <xsl:copy-of select="$risDoc/r:ris/r:TI/text()"/>
-                <foreignphrase role="source" xml:lang="ja">
-                    <xsl:value-of select="h:html/h:body/h:h1[@class = 'title']"/>
-                </foreignphrase>
+                <source xml:lang="ja">
+                    <xsl:value-of select="$jaDoc/h:html/h:body/h:h1[@class = 'title']"/>
+                </source>
             </title>
             <abstract>
                 <para>
@@ -80,17 +78,17 @@
                             <xsl:if test="$risDoc/r:ris/r:AU/r:FIRST">
                                 <firstname>
                                     <xsl:copy-of select="$risDoc/r:ris/r:AU/r:FIRST/text()"/>
-                                    <foreignphrase role="source" xml:lang="ja">
+                                    <source xml:lang="ja">
                                         <xsl:value-of select="$jaAuthorEnd"/>
-                                    </foreignphrase>
+                                    </source>
                                 </firstname>
                             </xsl:if>
                             <xsl:if test="$risDoc/r:ris/r:AU/r:LAST">
                                 <surname>
                                     <xsl:copy-of select="$risDoc/r:ris/r:AU/r:LAST/text()"/>
-                                    <foreignphrase role="source" xml:lang="ja">
+                                    <source xml:lang="ja">
                                         <xsl:value-of select="$jaAuthorStart"/>
-                                    </foreignphrase>
+                                    </source>
                                 </surname>
                             </xsl:if>
                         </personname>
@@ -98,9 +96,9 @@
                     <xsl:if test="not($isPerson)">
                         <orgname>
                             <xsl:copy-of select="$risDoc/r:ris/r:AU/text()"/>
-                            <foreignphrase role="source" xml:lang="ja">
+                            <source xml:lang="ja">
                                 <xsl:value-of select="$jaAuthor"/>
-                            </foreignphrase>
+                            </source>
                         </orgname>
                     </xsl:if>
                 </author>
@@ -139,6 +137,7 @@
         </info>
     </xsl:template>
     <!-- End of info element -->
+    <xsl:template match="h:html/text()"/>
     <xsl:template match="h:p">
         <xsl:call-template name="para">
             <xsl:with-param name="p" select="."/>
@@ -154,9 +153,9 @@
             <xsl:if test="string($p[@id])">
                 <xsl:variable name="jaDoc" select="document($ja)"/>
                 <xsl:variable name="jaSource" select="$jaDoc/h:html/h:body//h:p[@id = $p/@id]"/>
-                <foreignphrase role="source" xml:lang="ja">
+                <source xml:lang="ja">
                     <xsl:apply-templates select="$jaSource/node()|$jaSource/text()"/>
-                </foreignphrase>
+                </source>
             </xsl:if>
         </para>
     </xsl:template>
@@ -174,6 +173,12 @@
         </preface>
     </xsl:template>
     <!-- End of preface element -->
+    <xsl:template match="h:rt">
+        <rt><xsl:apply-templates/></rt>
+    </xsl:template>
+    <xsl:template match="h:ruby">
+        <ruby><xsl:apply-templates select="h:rb/text()"/><xsl:apply-templates select="h:rt"/></ruby>
+    </xsl:template>
     <xsl:template match="h:strong">
         <emphasis>
             <xsl:if test="string(.[@class])"><xsl:attribute name="role"><xsl:value-of select="./@class"/></xsl:attribute></xsl:if>
