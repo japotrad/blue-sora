@@ -5,9 +5,11 @@ $ja_html = file_get_contents($docpath);
 // Customize HTML Purifier. See http://htmlpurifier.org/live/configdoc/plain.html
 $config = HTMLPurifier_Config::createDefault();
 $config->set('Core.CollectErrors',1);
+$config->set('Cache.DefinitionImpl', null);
 $config->set('Attr.EnableID', 1);
+$config->set('HTML.Trusted', true);
 $config->set('HTML.Doctype', 'XHTML 1.0 Strict');
-$config->set('HTML.Allowed', 'div[class],h1[class],br,p[id],i,strong[class]');
+$config->set('HTML.Allowed', 'div[class],h1[class],br,p[id],i,input[alt|type|value],label,span,strong[class],sup');
 
 // Run the checker and collect the errors
 $purifier = new HTMLPurifier($config);
