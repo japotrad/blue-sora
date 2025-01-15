@@ -98,53 +98,54 @@ while IFS= read -r line
 		((div_id+=1))
 	  fi
 	  # Replace non Shift-JIS characters with their UTF-8 equivalents
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-01\/1-01-52.png\" alt=\"※(始め二重山括弧、1-1-52)\" class=\"gaiji\" \/>/《}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-01\/1-01-53.png\" alt=\"※(終わり二重山括弧、1-1-53)\" class=\"gaiji\" \/>/》}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-01\/1-01-52.png\" alt=\"※(始め二重山括弧、1-1-52)\" class=\"gaiji\" \/>/《}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-01\/1-01-53.png\" alt=\"※(終わり二重山括弧、1-1-53)\" class=\"gaiji\" \/>/》}
 	  if [[ "$line" == *"1-02-22.png"* ]]; then # If there is a ku-no-jiten, generate a warning
 	     msg "${YELLOW}: Ku-no-jiten replaced 々 in ${line}"
 	  fi
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-02\/1-02-22.png\" alt=\"※(二の字点、1-2-22)\" class=\"gaiji\" \/>/々}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-02\/1-02-54.png\" alt=\"※(始め二重括弧、1-2-54)\" class=\"gaiji\" \/>/｟}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-02\/1-02-55.png\" alt=\"※(終わり二重括弧、1-2-55)\" class=\"gaiji\" \/>/｠}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-06\/1-06-57.png\" alt=\"※(ギリシア小文字ファイナルSIGMA、1-6-57)\" class=\"gaiji\" \/>/ς}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-08\/1-08-75.png\" alt=\"※(感嘆符二つ、1-8-75)\" class=\"gaiji\" \/>/!!}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-08\/1-08-77.png\" alt=\"※(疑問符感嘆符、1-8-77)\" class=\"gaiji\" \/>/?!}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-20.png\" alt=\"※(2分の1、1-9-20)\" class=\"gaiji\" \/>/½}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-32.png\" alt=\"※(アキュートアクセント付きE)\" class=\"gaiji\" \/>/É}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-27.png\" alt=\"※(ダイエレシス付きA)\" class=\"gaiji\" \/>/Ä}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-45.png\" alt=\"※(ダイエレシス付きO)\" class=\"gaiji\" \/>/Ö}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-50.png\" alt=\"※(ダイエレシス付きU)\" class=\"gaiji\" \/>/Ü}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-53.png\" alt=\"※(ドイツ語エスツェット)\" class=\"gaiji\" \/>/ß}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-54.png\" alt=\"※(グレーブアクセント付きA小文字)\" class=\"gaiji\" \/>/à}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-55.png\" alt=\"※(アキュートアクセント付きA小文字)\" class=\"gaiji\" \/>/á}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-58.png\" alt=\"※(ダイエレシス付きA小文字)\" class=\"gaiji\" \/>/ä}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-60.png\" alt=\"※(リガチャAE小文字)\" class=\"gaiji\" \/>/æ}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-61.png\" alt=\"※(セディラ付きC小文字)\" class=\"gaiji\" \/>/ç}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-62.png\" alt=\"※(グレーブアクセント付きE小文字)\" class=\"gaiji\" \/>/è}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-63.png\" alt=\"※(アキュートアクセント付きE小文字)\" class=\"gaiji\" \/>/é}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-64.png\" alt=\"※(サーカムフレックスアクセント付きE小文字)\" class=\"gaiji\" /\>/ê}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-69.png\" alt=\"※(ダイエレシス付きI小文字)\" class=\"gaiji\" \/>/ï}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-74.png\" alt=\"※(サーカムフレックスアクセント付きO小文字)\" class=\"gaiji\" \/>/ô}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-76.png\" alt=\"※(ダイエレシス付きO小文字)\" class=\"gaiji\" \/>/ö}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-81.png\" alt=\"※(ダイエレシス付きU小文字)\" class=\"gaiji\" \/>/ü}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-09\/1-09-94.png\" alt=\"※(マクロン付きO小文字)\" class=\"gaiji\" \/>/ō}
-	  line=${line//<img [^s]* src=\"..\/..\/..\/gaiji\/1-13\/1-13-21.png\" alt=\"※(ローマ数字1、1-13-21)\" class=\"gaiji\" \/>/I}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-13\/1-13-22.png\" alt=\"※(ローマ数字2、1-13-22)\" class=\"gaiji\" \/>/II}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-13\/1-13-23.png\" alt=\"※(ローマ数字3、1-13-23)\" class=\"gaiji\" \/>/III}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-13\/1-13-24.png\" alt=\"※(ローマ数字4、1-13-24)\" class=\"gaiji\" \/>/IV}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-13\/1-13-25.png\" alt=\"※(ローマ数字5、1-13-25)\" class=\"gaiji\" \/>/V}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-13\/1-13-26.png\" alt=\"※(ローマ数字6、1-13-26)\" class=\"gaiji\" \/>/VI}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-13\/1-13-29.png\" alt=\"※(ローマ数字9、1-13-29)\" class=\"gaiji\" \/>）/IX}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-13\/1-13-89.png\" alt=\"※(直角三角、1-13-89)\" class=\"gaiji\" \/>/◿}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-84\/1-84-30.png\" alt=\"※(「或」の「丿」に代えて「彡」、第3水準1-84-30)\" class=\"gaiji\" \/>/彧}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-84\/1-84-31.png\" alt=\"※(「彳＋低のつくり」、第3水準1-84-31)\" class=\"gaiji\" \/>/彽}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-85\/1-85-18.png\" alt=\"※(「日＋令」、第3水準1-85-18)\" class=\"gaiji\" \/>/昤}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-85\/1-85-25.png\" alt=\"※(「日＋向」、第3水準1-85-25)\" class=\"gaiji\" \/>/晌}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-93\/1-93-25.png\" alt=\"※(「金＋英」、第3水準1-93-25)\" class=\"gaiji\" \/>/鍈}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/1-93\/1-93-66.png\" alt=\"※(「奚＋隹」、第3水準1-93-66)\" class=\"gaiji\" \/>/雞}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/2-13\/2-13-28.png\" alt=\"※(「插」でつくりの縦棒が下に突き抜けている、第4水準2-13-28)\" class=\"gaiji\" \/>/揷}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/2-80\/2-80-78.png\" alt=\"※(「王＋爭」、第4水準2-80-78)\" class=\"gaiji\" \/>/琤}
-	  line=${line//<img [^s]*src=\"..\/..\/..\/gaiji\/2-87\/2-87-90.png\" alt=\"※(「郷／虫」の「即のへん」に代えて「皀」、第4水準2-87-90)\" class=\"gaiji\" \/>/蠁}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-02\/1-02-22.png\" alt=\"※(二の字点、1-2-22)\" class=\"gaiji\" \/>/々}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-02\/1-02-54.png\" alt=\"※(始め二重括弧、1-2-54)\" class=\"gaiji\" \/>/｟}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-02\/1-02-55.png\" alt=\"※(終わり二重括弧、1-2-55)\" class=\"gaiji\" \/>/｠}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-06\/1-06-57.png\" alt=\"※(ギリシア小文字ファイナルSIGMA、1-6-57)\" class=\"gaiji\" \/>/ς}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-08\/1-08-75.png\" alt=\"※(感嘆符二つ、1-8-75)\" class=\"gaiji\" \/>/!!}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-08\/1-08-75.png\" alt=\"※(感嘆符二つ、1-8-75)\" class=\"gaiji\" \/>/!!}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-08\/1-08-77.png\" alt=\"※(疑問符感嘆符、1-8-77)\" class=\"gaiji\" \/>/?!}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-20.png\" alt=\"※(2分の1、1-9-20)\" class=\"gaiji\" \/>/½}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-32.png\" alt=\"※(アキュートアクセント付きE)\" class=\"gaiji\" \/>/É}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-27.png\" alt=\"※(ダイエレシス付きA)\" class=\"gaiji\" \/>/Ä}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-45.png\" alt=\"※(ダイエレシス付きO)\" class=\"gaiji\" \/>/Ö}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-50.png\" alt=\"※(ダイエレシス付きU)\" class=\"gaiji\" \/>/Ü}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-53.png\" alt=\"※(ドイツ語エスツェット)\" class=\"gaiji\" \/>/ß}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-54.png\" alt=\"※(グレーブアクセント付きA小文字)\" class=\"gaiji\" \/>/à}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-55.png\" alt=\"※(アキュートアクセント付きA小文字)\" class=\"gaiji\" \/>/á}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-58.png\" alt=\"※(ダイエレシス付きA小文字)\" class=\"gaiji\" \/>/ä}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-60.png\" alt=\"※(リガチャAE小文字)\" class=\"gaiji\" \/>/æ}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-61.png\" alt=\"※(セディラ付きC小文字)\" class=\"gaiji\" \/>/ç}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-62.png\" alt=\"※(グレーブアクセント付きE小文字)\" class=\"gaiji\" \/>/è}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-63.png\" alt=\"※(アキュートアクセント付きE小文字)\" class=\"gaiji\" \/>/é}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-64.png\" alt=\"※(サーカムフレックスアクセント付きE小文字)\" class=\"gaiji\" /\>/ê}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-69.png\" alt=\"※(ダイエレシス付きI小文字)\" class=\"gaiji\" \/>/ï}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-74.png\" alt=\"※(サーカムフレックスアクセント付きO小文字)\" class=\"gaiji\" \/>/ô}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-76.png\" alt=\"※(ダイエレシス付きO小文字)\" class=\"gaiji\" \/>/ö}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-81.png\" alt=\"※(ダイエレシス付きU小文字)\" class=\"gaiji\" \/>/ü}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-09\/1-09-94.png\" alt=\"※(マクロン付きO小文字)\" class=\"gaiji\" \/>/ō}
+	  line=${line//<img * src=\"..\/..\/..\/gaiji\/1-13\/1-13-21.png\" alt=\"※(ローマ数字1、1-13-21)\" class=\"gaiji\" \/>/I}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-13\/1-13-22.png\" alt=\"※(ローマ数字2、1-13-22)\" class=\"gaiji\" \/>/II}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-13\/1-13-23.png\" alt=\"※(ローマ数字3、1-13-23)\" class=\"gaiji\" \/>/III}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-13\/1-13-24.png\" alt=\"※(ローマ数字4、1-13-24)\" class=\"gaiji\" \/>/IV}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-13\/1-13-25.png\" alt=\"※(ローマ数字5、1-13-25)\" class=\"gaiji\" \/>/V}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-13\/1-13-26.png\" alt=\"※(ローマ数字6、1-13-26)\" class=\"gaiji\" \/>/VI}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-13\/1-13-29.png\" alt=\"※(ローマ数字9、1-13-29)\" class=\"gaiji\" \/>）/IX}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-13\/1-13-89.png\" alt=\"※(直角三角、1-13-89)\" class=\"gaiji\" \/>/◿}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-84\/1-84-30.png\" alt=\"※(「或」の「丿」に代えて「彡」、第3水準1-84-30)\" class=\"gaiji\" \/>/彧}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-84\/1-84-31.png\" alt=\"※(「彳＋低のつくり」、第3水準1-84-31)\" class=\"gaiji\" \/>/彽}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-85\/1-85-18.png\" alt=\"※(「日＋令」、第3水準1-85-18)\" class=\"gaiji\" \/>/昤}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-85\/1-85-25.png\" alt=\"※(「日＋向」、第3水準1-85-25)\" class=\"gaiji\" \/>/晌}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-93\/1-93-25.png\" alt=\"※(「金＋英」、第3水準1-93-25)\" class=\"gaiji\" \/>/鍈}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/1-93\/1-93-66.png\" alt=\"※(「奚＋隹」、第3水準1-93-66)\" class=\"gaiji\" \/>/雞}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/2-13\/2-13-28.png\" alt=\"※(「插」でつくりの縦棒が下に突き抜けている、第4水準2-13-28)\" class=\"gaiji\" \/>/揷}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/2-80\/2-80-78.png\" alt=\"※(「王＋爭」、第4水準2-80-78)\" class=\"gaiji\" \/>/琤}
+	  line=${line//<img *src=\"..\/..\/..\/gaiji\/2-87\/2-87-90.png\" alt=\"※(「郷／虫」の「即のへん」に代えて「皀」、第4水準2-87-90)\" class=\"gaiji\" \/>/蠁}
 	  line=${line//※<span class=\"notes\">［＃鋭アクセント付きυ、U+1F7B、19-下-2］<\/span>/ύ}
 	  line=${line//※<span class=\"notes\">［＃下側の右ダブル引用符、U+201E、33-上-10］<\/span>/„}
 	  line=${line//※<span class=\"notes\">［＃ローマ数字13、50-下-20］<\/span>/XIII}
