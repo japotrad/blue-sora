@@ -15,9 +15,11 @@
             <xsl:apply-templates />
         </xsl:element>
     </xsl:template>
-    <xsl:template match="xhtml:ruby">
+    <xsl:template match="xhtml:label"/><!-- Remove Aozora Bunko note -->
+    <xsl:template match="xhtml:ruby"><!-- Remove furigana -->
         <xsl:value-of select="xhtml:rb"/>
     </xsl:template>
+    <xsl:template match="xhtml:script"/>
     <xsl:template match="@* | text() | comment() | processing-instruction()">
         <xsl:copy/>
     </xsl:template>
