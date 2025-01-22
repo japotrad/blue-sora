@@ -9,7 +9,7 @@ $config->set('Cache.DefinitionImpl', null);
 $config->set('Attr.EnableID', 1);
 $config->set('HTML.Trusted', true);
 $config->set('HTML.Doctype', 'XHTML 1.0 Strict');
-$config->set('HTML.Allowed', 'div[class],h1[class],br,p[id],i,input[alt|type|value],label,span,strong[class],sup');
+$config->set('HTML.Allowed', 'div[class],h1[class],br,p[id],em[class],i,input[alt|type|value],label,span,strong[class],sup');
 
 // Run the checker and collect the errors
 $purifier = new HTMLPurifier($config);
