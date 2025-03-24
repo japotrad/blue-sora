@@ -32,6 +32,7 @@ blue-sora is a preparation chain generating bilingual bibk files from Aozora Bun
 - **CheckHTML.php** based on [![Powered by HTML Purifier](http://htmlpurifier.org/live/art/powered.png 'HTML Purifier')](http://htmlpurifier.org/) to inspect the HTML body  
   Usage: `php.exe CheckHTML.php ../documents/12345_ja.html`
 ## 2. Translate the document
+Any CAT tool could be possibly plugged into this stage, as the HTML and TMX formats are precisely standardized. In the Trados Studio flow, we can see an extra step that takes advantage of a Trados Studio comment capability that allows the translator to add a comment anywhere in the target segment (and not only on the segment as a whole, like on OmegaT). This comment will be converted into a footnote in the Bibk file during stage #4, and the footnote callout will be placed just after the words that were highlighted in Trados Studio Editor. On the OmegaT flow, footnote callouts will always be located at segment ends.
 ![Translate overview](2-Translate.png)
 ### File description:
 - **12345_ja.html**: File to translate. Format: XHTML 1.0 Strict
