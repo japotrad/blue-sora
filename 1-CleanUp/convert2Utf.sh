@@ -90,7 +90,9 @@ while IFS= read -r line
 	  if [[ "$line" == *"xmlns=\"http://www.w3.org/1999/xhtml\""* ]]; then
 	    line="<html xmlns=\"http://www.w3.org/1999/xhtml\" lang=\"ja\" xml:lang=\"ja\">"
 	  fi
+	  line=${line/<title>[^<]*<\/title>/<title>From ${output_file_name}<\/title>}
 	  line=${line/<meta name=\"DC.Creator\"/<meta name=\"author\"}
+	  line=${line//<div id=\"contents\" style=\"display:none\"><\/div>/}
 	fi
 	if [ $is_header -eq 0 ] && [ $is_footer -eq 0 ]; then #if we are in the main text
 	  if [[ "$line" == *"<div"* ]]; then 
@@ -177,15 +179,12 @@ while IFS= read -r line
 	    fi
 	  fi
 	fi # End if "in main text"
-	if [[ "$line" == *"<title>"* ]]; then # Overwrite title metadata with the output file name
-	  line=${line/<title>[^<]*<\/title>/<title>From ${output_file_name}<\/title>}
-	fi
+
     if [ $is_footer -eq 1 ] || [[ "$line" == *"http-equiv=\"content-style-type\""* ]] || [[ "$line" == *"rel=\"DC.Schema\""* ]] || [[ "$line" == *"name=\"DC.Publisher\""* ]] || [[ "$line" == *"class=\"author\""* ]]; then 
 	  continue # Remove some lines
 	fi
 	
 	echo -e "$line" >> "${temp_path}/${input_file_name}-3"
-
 	if [[ "$line" == *"<div class=\"main_text\">"* ]]; then
 	  is_header=0
 	fi
