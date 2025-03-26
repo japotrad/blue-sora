@@ -2,7 +2,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xhtml="http://www.w3.org/1999/xhtml" version="1.0">
     <xsl:strip-space elements="*"/>
     <xsl:output method="xml" omit-xml-declaration="no" indent="yes" encoding="UTF-8" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>
-    <xsl:template match="xhtml:div[@style='display:none']"/>
     <xsl:template match="xhtml:link"/>
     <xsl:template match="xhtml:head">
         <xsl:element name="head" namespace="http://www.w3.org/1999/xhtml">
