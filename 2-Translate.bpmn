@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0bers6t" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.29.0" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.2.0">
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:bioc="http://bpmn.io/schema/bpmn/biocolor/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color/1.0" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_0bers6t" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.33.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="8.2.0">
   <bpmn:process id="buildDbk" name="buildDbk" isExecutable="true">
     <bpmn:dataObjectReference id="DataObjectReference_1c1ftp6" name="12345_&#10;en.html" dataObjectRef="DataObject_1wlleu3" />
     <bpmn:dataObjectReference id="DataObjectReference_0p6z6ty" name="12345_&#10;en.tmx" dataObjectRef="DataObject_0nwn2s7" />
     <bpmn:dataObjectReference id="DataObjectReference_0h8xgjn" name="12345_&#10;ja.html" dataObjectRef="DataObject_0x11eq5" />
     <bpmn:dataObjectReference id="DataObjectReference_151wuvs" name="12345_en&#10;.sdlxliff" dataObjectRef="DataObject_1hqohnd" />
-    <bpmn:dataObjectReference id="DataObjectReference_0ujsca6" name="12345_en_&#10;beta.tmx" dataObjectRef="DataObject_1tpclxb" />
+    <bpmn:dataObjectReference id="DataObjectReference_0ujsca6" name="12345_en_&#10;trados.tmx" dataObjectRef="DataObject_1tpclxb" />
     <bpmn:task id="Activity_1posdmj" name="Add notes to Trados TMX">
       <bpmn:incoming>Flow_06f2ifs</bpmn:incoming>
       <bpmn:outgoing>Flow_0hhmcbf</bpmn:outgoing>
@@ -108,7 +108,7 @@
       <bpmn:outgoing>Flow_09uwo7k</bpmn:outgoing>
     </bpmn:userTask>
     <bpmn:textAnnotation id="TextAnnotation_1i916jv">
-      <bpmn:text>tmx.xsl</bpmn:text>
+      <bpmn:text>trados-tmx.xsl</bpmn:text>
     </bpmn:textAnnotation>
     <bpmn:association id="Association_1buzkog" associationDirection="None" sourceRef="Activity_1posdmj" targetRef="TextAnnotation_1i916jv" />
   </bpmn:process>
@@ -188,7 +188,7 @@
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="TextAnnotation_1i916jv_di" bpmnElement="TextAnnotation_1i916jv" bioc:stroke="#1e88e5" bioc:fill="#bbdefb" color:background-color="#bbdefb" color:border-color="#1e88e5">
-        <dc:Bounds x="780" y="325" width="58" height="30" />
+        <dc:Bounds x="780" y="330" width="90" height="30" />
         <bpmndi:BPMNLabel />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="DataInputAssociation_171jdos_di" bpmnElement="DataInputAssociation_171jdos">
