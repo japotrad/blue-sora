@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Not supported: Non-empty inline bpt, ept, hi and it tags -->
 <xsl:stylesheet xmlns:functx="http://www.functx.com" xmlns:sdl="http://sdl.com/FileTypes/SdlXliff/1.0"
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
