@@ -73,6 +73,7 @@ echo -e '<ris xmlns="https://github.com/japotrad/blue-sora/ris">' >> "${output_p
 
 # Step 1: Process the input RIS file
 is_header=1 # The header is what is above the first line starting with "TY  - "
+is_abstract=0 #This variable becomes true during the processing of multilingual "AB" tag.
 while IFS= read -r line
   do
 	if [ $is_header -eq 0 ]; then #if we are in the 1st bib record
@@ -80,7 +81,17 @@ while IFS= read -r line
 	    break
 	  fi
 	  line=${line/[$'\r']} # Remove the Carriage Return character 0x0D (if any)
+	  # Multi-line fields - Other lines
+	  if [ $is_abstract -eq 1 ] && [[ ${line:2:4} != "  - " ]]; then
+	    echo -e "$line" >> "${output_path}"
+		continue
+	  fi
 	  if [[ ${line:2:4} == "  - " ]]; then # if the line start with "??  - "
+	    if [ $is_abstract -eq 1 ] && [[ ${line:0:2} != "AB" ]]; then # Add the closing XML tag for the previous multi-line tag
+		    truncate -s-1 "${output_path}"
+	        echo -e "</AB>" >> "${output_path}"
+			is_abstract=0
+		fi
 	    if [[ ${line:0:2} == "A1" ]]; then # Replace A1 tag with AU
 		  line=`echo "AU${line:2}"`
 		fi
@@ -99,10 +110,17 @@ while IFS= read -r line
 		if [[ ${line:0:2} == "T1" ]] || [[ ${line:0:2} == "CT" ]]; then # Replace T1 and CT tag with TI
 		  line=`echo "TI${line:2}"`
 		fi
-		if [[ ${line:0:2} == "TI" ]] || [[ ${line:0:2} == "AU" ]] || [[ ${line:0:2} == "A4" ]] || [[ ${line:0:2} == "AB" ]] || [[ ${line:0:2} == "PY" ]] || [[ ${line:0:2} == "UR" ]]; then 
-		  line=`echo "  <${line:0:2}>${line:6}</${line:0:2}>"` # Turn the TI, AU, A4, AB, PY and UR tags into XML, and ignore the other tags.
+		# Single-line fields
+		if [[ ${line:0:2} == "TI" ]] || [[ ${line:0:2} == "AU" ]] || [[ ${line:0:2} == "A4" ]] || [[ ${line:0:2} == "PY" ]] || [[ ${line:0:2} == "UR" ]]; then
+		  echo -e "  <${line:0:2}>${line:6}</${line:0:2}>" >> "${output_path}" # Turn the TI, AU, A4, PY and UR tags into XML.
+		  continue
 	    fi
-	  echo -e "$line" >> "${output_path}"
+		# Multi-line fields - First line
+		if [[ ${line:0:2} == "AB" ]]; then
+		  is_abstract=1
+		  echo -e "  <${line:0:2}>${line:6}" >> "${output_path}" # The XML tag is left unclosed.
+		  continue
+		fi
 	  fi # End if "line starting with a tag"
 	fi # End if "1st bib record"
 	if [ "${line:0:6}" == "TY  - " ]; then
