@@ -38,7 +38,19 @@
         </book>
     </xsl:template>
     <xsl:template name="article">
-        <article><xsl:apply-templates/></article>
+        <article>
+            <xsl:variable name="risDoc" select="document($ris)"/>
+            <xsl:variable name="jaDoc" select="document($ja)"/>
+            <info>
+                <title>
+                    <xsl:copy-of select="$risDoc/r:ris/r:TI/text()"/>
+                    <source xml:lang="ja">
+                        <xsl:value-of select="$jaDoc/h:html/h:body/descendant::h:h1[@class = 'title']"/>
+                    </source>
+                </title>
+            </info>
+            <xsl:apply-templates/>
+        </article>
     </xsl:template>
     <xsl:template match="h:body/text()"/>
     <xsl:template match="h:div/text()"/>
@@ -55,9 +67,9 @@
                 </source>
             </title>
             <abstract>
-                <para>
+                <literallayout>
                     <xsl:copy-of select="$risDoc/r:ris/r:AB/text()"/>
-                </para>
+                </literallayout>
             </abstract>
             <authorgroup>
                 <author>
@@ -163,9 +175,11 @@
         <xsl:variable name="pDoc" select="document($preface)"/>
         <preface>
             <xsl:if test="$pDoc/h:html/h:body/h:h1">
-                <title>
-                    <xsl:copy-of select="$pDoc/h:html/h:body/h:h1/text()"/>
-                </title>
+                <info>  
+                    <title>
+                        <xsl:copy-of select="$pDoc/h:html/h:body/h:h1/text()"/>
+                    </title>
+                </info>
                 <xsl:for-each select="$pDoc/h:html/h:body/h:p">
                     <xsl:call-template name="para"><xsl:with-param name="p" select="$pDoc/h:html/h:body/h:p"/></xsl:call-template>
                 </xsl:for-each>
