@@ -4,16 +4,16 @@
     xmlns:r="https://github.com/japotrad/blue-sora/ris" exclude-result-prefixes="xs h r"
     version="2.0">
     <xsl:variable name="base-uri-radical" select="substring-before(base-uri(),'_')"/> <!-- URI to process truncated before the language code -->
-    <xsl:param name="lang" select="substring-after(substring-before(base-uri(), '.html'),'_')"/>
     <!-- 2-letter code of the language the document has been translated into -->
-    <xsl:param name="ris" select="concat(substring-before(base-uri(), '.html'), '_ris.xml')"/>
+    <xsl:param name="lang" select="substring-after(substring-before(base-uri(), '.html'),'_')"/>
     <!-- Full path to the RIS XML file -->
+    <xsl:param name="ris" select="concat(substring-before(base-uri(), '.html'), '_ris.xml')"/>
+    <!-- Full path to the preface HTML file in the target language -->
     <xsl:param name="preface" select="concat(substring-before(base-uri(), '.html'), '_preface.html')"/>
-    <!-- Full path to the preface file in the above language -->
-    <xsl:param name="ja" select="concat($base-uri-radical, '_rich.html')"/>
     <!-- Full path to the HTML document file in Japanese -->
-    <xsl:param name="tmx" select="concat(substring-before(base-uri(), '.html'), '.tmx')"/>
+    <xsl:param name="ja" select="concat($base-uri-radical, '_rich.html')"/>
     <!-- Full path to the translation memory file -->
+    <xsl:param name="tmx" select="concat(substring-before(base-uri(), '.html'), '.tmx')"/>
     <xsl:output method="xml" encoding="UTF-8" indent="no" omit-xml-declaration="no"/>
     <xsl:variable name="translatorNotes" select="document($tmx)/tmx/body/tu[note]"/>
     <xsl:template match="/">
@@ -51,7 +51,7 @@
             <title>
                 <xsl:copy-of select="$risDoc/r:ris/r:TI/text()"/>
                 <source xml:lang="ja">
-                    <xsl:value-of select="$jaDoc/h:html/h:body/h:h1[@class = 'title']"/>
+                    <xsl:value-of select="$jaDoc/h:html/h:body/descendant::h:h1[@class = 'title']"/>
                 </source>
             </title>
             <abstract>
