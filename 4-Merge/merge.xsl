@@ -15,8 +15,10 @@
     <!-- Full path to the translation memory file -->
     <xsl:param name="tmx" select="concat(substring-before(base-uri(), '.html'), '.tmx')"/>
     <xsl:output method="xml" encoding="UTF-8" indent="no" omit-xml-declaration="no"/>
-    <xsl:variable name="translatorNotes" select="document($tmx)/tmx/body/tu[note]"/>
     <xsl:template match="/">
+        <xsl:if test="not(doc-available($tmx))">
+            <xsl:message>Info: No translator note is generated, because no file has been found at: <xsl:value-of select="$tmx"/></xsl:message>
+        </xsl:if>
         <book>
             <xsl:attribute name="xml:lang">
                 <xsl:value-of select="$lang"/>
@@ -203,11 +205,14 @@
     <xsl:template match="text()">
         <xsl:variable name="txt"><xsl:value-of select="."/></xsl:variable>
         <xsl:variable name="annotatedTU">
-            <xsl:for-each select="$translatorNotes">
-                <xsl:if test="contains($txt,./tuv[@xml:lang=$lang]/seg)">
-                    <xsl:copy-of select="."/>
-                </xsl:if>
-            </xsl:for-each>
+            <xsl:if test="doc-available($tmx)">
+                <xsl:variable name="translatorNotes" select="document($tmx)/tmx/body/tu[note]"/>
+                    <xsl:for-each select="$translatorNotes">
+                    <xsl:if test="contains($txt,./tuv[@xml:lang=$lang]/seg)">
+                        <xsl:copy-of select="."/>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:if>
         </xsl:variable>
         <xsl:if test="$annotatedTU=''">
             <xsl:value-of select="$txt"/>
