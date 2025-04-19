@@ -195,16 +195,24 @@
     <xsl:template match="h:ruby">
         <ruby><xsl:apply-templates select="h:rb/text()"/><xsl:apply-templates select="h:rt"/></ruby>
     </xsl:template>
-    <xsl:template match="h:strong">
+    <xsl:template match="h:strong|h:em">
         <emphasis>
-            <xsl:if test="string(.[@class])"><xsl:attribute name="role"><xsl:value-of select="./@class"/></xsl:attribute></xsl:if>
+            <xsl:if test="string(.[@class])">
+                <xsl:variable name="role">
+                    <xsl:choose>
+                        <xsl:when test="lower-case(./@class)='sesame_dot'"><xsl:text>bold</xsl:text></xsl:when>
+                        <xsl:otherwise><xsl:value-of select="./@class"/></xsl:otherwise>
+                    </xsl:choose>
+                </xsl:variable>
+                <xsl:attribute name="role" select="$role"/>
+            </xsl:if>
             <xsl:apply-templates/>
         </emphasis>
     </xsl:template>
     <!-- End of strong element -->
     <xsl:template match="text()">
         <xsl:variable name="txt"><xsl:value-of select="."/></xsl:variable>
-        <xsl:variable name="annotatedTU">
+        <xsl:variable name="annotatedTU"><!-- TMX translation unit elements whose target language variant is part of the text being processed and which contains a note child element -->
             <xsl:if test="doc-available($tmx)">
                 <xsl:variable name="translatorNotes" select="document($tmx)/tmx/body/tu[note]"/>
                     <xsl:for-each select="$translatorNotes">
@@ -218,5 +226,5 @@
             <xsl:value-of select="$txt"/>
         </xsl:if>
         <xsl:if test="not($annotatedTU='')"><xsl:value-of select="substring-before($txt,$annotatedTU/tu/tuv[@xml:lang=$lang]/seg)"/><xsl:value-of select="$annotatedTU/tu/tuv[@xml:lang=$lang]/seg"/><footnote><para><xsl:value-of select="$annotatedTU/tu/note"/></para></footnote><xsl:value-of select="substring-after($txt,$annotatedTU/tu/tuv[@xml:lang=$lang]/seg)"/></xsl:if>
-    </xsl:template>
+    </xsl:template><!-- End of the text template -->
 </xsl:stylesheet>
