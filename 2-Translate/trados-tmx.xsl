@@ -21,8 +21,8 @@
             <xsl:variable name="transunit"><xsl:copy-of select="document($xliff)/xliff:xliff/xliff:file/xliff:body/xliff:group/xliff:trans-unit[sdl:seg-defs/sdl:seg/sdl:value[@key='modified_on']=$changedate]"/></xsl:variable>
             <xsl:variable name="segid"><xsl:value-of select="$transunit/xliff:trans-unit/sdl:seg-defs/sdl:seg[sdl:value[@key='modified_on']=$changedate]/@id"/></xsl:variable>
             <xsl:variable name="notes"><!-- Parts of the target segment that are highlighted in Trados Studio, along with their corresponding comments -->
-                <xsl:for-each select="$transunit/xliff:trans-unit/xliff:target/xliff:mrk[@mtype='seg' and @mid=$segid]/xliff:mrk[@mtype='x-sdl-comment']">
-                    <xsl:variable name="beforecallout"><xsl:value-of select="$transunit/xliff:trans-unit/xliff:target/xliff:mrk[@mtype='seg' and @mid=$segid]/xliff:mrk[@mtype='x-sdl-comment']/preceding-sibling::text()"/></xsl:variable> <!-- Part of the segment preceding the callout -->
+                <xsl:for-each select="$transunit/xliff:trans-unit/xliff:target/xliff:mrk[@mtype='seg' and @mid=$segid]//xliff:mrk[@mtype='x-sdl-comment']">
+                    <xsl:variable name="beforecallout"><xsl:value-of select="$transunit/xliff:trans-unit/xliff:target/xliff:mrk[@mtype='seg' and @mid=$segid]//xliff:mrk[@mtype='x-sdl-comment']/preceding::text()[1]"/></xsl:variable> <!-- Part of the segment preceding the callout -->
                     <xsl:variable name="calloutrank"><xsl:value-of select="max((1, count(tokenize($beforecallout, functx:escape-for-regex(current())))))"/></xsl:variable><!-- Among all occurrences of the callout text within the segment, what is the rank of the actual callout? Should be 1 in most cases. -->
                     <xsl:element name="note">
                         <xsl:attribute name="rank" select="$calloutrank"/><!-- Among all occurrences of the callout text within the segment, what is the rank of the actual callout? Should be 1 in most cases. -->
