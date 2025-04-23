@@ -4,12 +4,15 @@
     xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:xs="http://www.w3.org/2001/XMLSchema" version="2.0">
     <xsl:include href="functions.xsl"/>
-    <xsl:variable name="base-uri-radical" select="substring-before(base-uri(),'_trados')"/> <!-- URI to process truncated before _trados -->
-    <xsl:param name="xliff" select="concat($base-uri-radical, '.sdlxliff')"/> <!-- Full path to the SDL XLIFF file -->
+    <!-- URI to process truncated before _trados -->
+    <xsl:variable name="base-uri-radical" select="substring-before(base-uri(),'_trados')"/>
+    <!-- Full path to the SDL XLIFF file -->
+    <xsl:param name="xliff" select="concat($base-uri-radical, '.sdlxliff')"/> 
     <xsl:output method="xml" encoding="UTF-8" indent="no" omit-xml-declaration="no" doctype-public="-//LISA OSCAR:1998//DTD for Translation Memory eXchange//EN" doctype-system="tmx15.dtd"/>
     <xsl:variable name="srclang" select="/tmx/header/@srclang"/> <!-- Expected value: ja-JP -->
     <xsl:variable name="translatorNotes" select="document($xliff)/xliff:xliff/sdl:doc-info/sdl:cmt-defs"/>
     <xsl:template match="tmx">
+        <xsl:message>Path to the sdlxliff file: <xsl:value-of select="$xliff"/></xsl:message>
         <xsl:element name="tmx">
             <xsl:attribute name="version">1.4</xsl:attribute>
             <xsl:apply-templates />
