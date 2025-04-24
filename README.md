@@ -66,7 +66,7 @@ Any CAT tool could be possibly plugged into this stage, as the HTML and TMX form
 - **segment.xsl**: XSL stylesheet V2.0 segmenting the main translation file (12345_en.html) according with the TMX file.
   Input parameter:
   - *tmx*: Path to the translation memory (by default: generated from the main translation file name, by replacing .html with .tmx)
-- **merge.xsl**: XSL stylesheet V2.0 processing the main translation file (12345_en.html)  
+- **merge.xsl**: XSL stylesheet V2.0 processing the segmented HTML file (12345_en_seg.html)  
   Input parameters:  
   - *lang*: Language of 12345_en.html (by default: substring between underscore and dot from the main translation file)  
   - *ris*: Path to the XML-formatted RIS file (by default: generated from the main translation file name, by replacing .html with _ris.xml 
