@@ -6,13 +6,35 @@
     <xsl:output method="xml" omit-xml-declaration="no" indent="yes" encoding="UTF-8" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>
     <xsl:variable name="segments">
         <xsl:if test="doc-available($tmx)">
-            <xsl:for-each select="document($tmx)/tmx/body/tu/tuv[@xml:lang!='ja' and @xml:lang!='ja-JP']/seg[1]">
+            <xsl:for-each select="document($tmx)/tmx/body/tu">
+                <xsl:variable name="targetsegment" select="tuv[@xml:lang!='ja' and @xml:lang!='ja-JP']/seg[1]"/>
                 <!-- From the TMX, get texts longer than 5 characters -->
-                <xsl:if test="string-length(text()[1]) &gt; 5">
+                <xsl:if test="string-length($targetsegment/text()[1]) &gt; 5">
                     <segment>
                         <!-- The rank attribute is the tu element position in the tmx body -->
                         <xsl:attribute name="rank"><xsl:value-of select="position()"/></xsl:attribute>
-                        <xsl:value-of select="text()"/>
+                        <txt><xsl:value-of select="$targetsegment/text()"/></txt>
+                        <xsl:if test="./note or $targetsegment/ph">
+                            <notes>
+                                <xsl:for-each select="$targetsegment/ph">
+                                    <!-- Note placed in the middle of the segment text -->
+                                    <note>
+                                        <!--  The index attribute gives the character position of the callout within the TMX segment -->
+                                        <xsl:attribute name="index">
+                                            <xsl:value-of select="string-length(string-join((preceding-sibling::text()),''))+1"/>
+                                        </xsl:attribute>
+                                        <xsl:value-of select="sub[1]/text()"/>
+                                    </note>
+                                </xsl:for-each>
+                                <xsl:if test="./note">
+                                    <!-- Global note on the text unit: the callout should be placed at the end of the segment -->
+                                    <note>
+                                        <xsl:attribute name="index"><xsl:value-of select="string-length($targetsegment/text())+1"/></xsl:attribute>
+                                        <xsl:value-of select="./note/text()"/>
+                                    </note>
+                                </xsl:if>
+                            </notes>
+                        </xsl:if>
                     </segment>
                 </xsl:if>
             </xsl:for-each>
@@ -32,13 +54,13 @@
             <!--xsl:value-of select="$plaintext"/-->
             <xsl:variable name="matchingsegments">
                 <xsl:for-each select="$segments/segment">
-                    <xsl:sort select="functx:index-of-string-first($plaintext,text())"/>
+                    <xsl:sort select="functx:index-of-string-first($plaintext,txt/text())"/>
                     <xsl:if test="contains($plaintext,.)">
                         <matchingsegment>
                             <xsl:attribute name="rank"><xsl:value-of select="@rank"/></xsl:attribute>
                             <!-- The index attribute gives the starting character position of the matching segment within the plain text -->
-                            <xsl:attribute name="index"><xsl:value-of select="functx:index-of-string-first($plaintext,text())"/></xsl:attribute>
-                            <xsl:copy-of select="text()" copy-namespaces="no"/>
+                            <xsl:attribute name="index"><xsl:value-of select="functx:index-of-string-first($plaintext,txt/text())"/></xsl:attribute>
+                            <txt><xsl:copy-of select="txt/text()" copy-namespaces="no"/></txt>
                         </matchingsegment>
                     </xsl:if>
                 </xsl:for-each>
