@@ -4,10 +4,9 @@
     <!-- Full path to the TMX file -->
     <xsl:param name="tmx" select="concat(substring-before(base-uri(),'.html'), '.tmx')"/> 
     <xsl:output method="xml" omit-xml-declaration="no" indent="yes" encoding="UTF-8" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>
-    <xsl:variable name="lang"><xsl:value-of select="/h:html/@xml:lang"/></xsl:variable>
     <xsl:variable name="segments">
         <xsl:if test="doc-available($tmx)">
-            <xsl:for-each select="document($tmx)/tmx/body/tu/tuv[@xml:lang=$lang]/seg[1]">
+            <xsl:for-each select="document($tmx)/tmx/body/tu/tuv[@xml:lang!='ja' and @xml:lang!='ja-JP']/seg[1]">
                 <!-- From the TMX, get texts longer than 5 characters -->
                 <xsl:if test="string-length(text()[1]) &gt; 5">
                     <segment>
