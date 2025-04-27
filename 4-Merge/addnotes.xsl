@@ -53,7 +53,6 @@
         <xsl:element name="{name()}" namespace="http://www.w3.org/1999/xhtml">
             <xsl:copy-of select="@*"/>
             <xsl:variable name="plaintext" select="string(.)"/>
-            <!--xsl:value-of select="$plaintext"/-->
             <xsl:variable name="matchingsegments">
                 <xsl:for-each select="$segments/segment">
                     <xsl:sort select="functx:index-of-string-first($plaintext,txt/text())"/>
@@ -69,7 +68,7 @@
                     </xsl:if>
                 </xsl:for-each>
             </xsl:variable>
-            <xsl:copy-of select="$matchingsegments"/>
+            <!--xsl:copy-of select="$matchingsegments"/-->
             <xsl:call-template name="addFirstNoteToMixedContent">
                 <xsl:with-param name="mixedcontent"><xsl:copy-of select="./node()"/></xsl:with-param>
                 <xsl:with-param name="matchingsegments"><xsl:copy-of select="$matchingsegments"/></xsl:with-param>
@@ -112,9 +111,10 @@
                     <matchingsegment>
                         <xsl:attribute name="rank"><xsl:value-of select="$firstmatchingsegment/@rank"/></xsl:attribute>
                         <xsl:attribute name="index"><xsl:value-of select="$firstmatchingsegment/@index"/></xsl:attribute>
-                        <seg><xsl:copy-of select="$firstmatchingsegment/seg/child::node()[position()>2]" copy-namespaces="no"/></seg>
+                        <seg><xsl:copy-of select="$firstmatchingsegment/seg/child::node()[position()>1]" copy-namespaces="no"/></seg>
                         <txt><xsl:value-of select="$firstmatchingsegment/txt"/></txt>
                     </matchingsegment>
+                    <xsl:copy-of select="$matchingsegments/matchingsegment[position()>1]"/>
                 </xsl:variable>
                 <xsl:call-template name="addFirstNoteToMixedContent">
                     <xsl:with-param name="mixedcontent"><xsl:copy-of select="$mixedcontent"/></xsl:with-param>
@@ -126,62 +126,69 @@
                 remove this node from $mixedcontent and $matchingsegments -->
                 <xsl:copy-of select="$mixedcontent/child::node()[1]"/>
                 <xsl:variable name="updatedmixedcontent">
-                    <xsl:copy-of select="$mixedcontent/child::node()[position()>2]"/>
+                    <xsl:copy-of select="$mixedcontent/child::node()[position()>1]"/>
                 </xsl:variable>
                 <xsl:variable name="updatedmatchingsegments">
                     <matchingsegment>
                         <xsl:attribute name="rank"><xsl:value-of select="$firstmatchingsegment/@rank"/></xsl:attribute>
                         <!-- The element is assumed to be empty, so that the index does not change. -->
                         <xsl:attribute name="index"><xsl:value-of select="$firstmatchingsegment/@index"/></xsl:attribute>
-                        <seg><xsl:copy-of select="$firstmatchingsegment/seg/child::node()[position()>2]" copy-namespaces="no"/></seg>
+                        <seg><xsl:copy-of select="$firstmatchingsegment/seg/child::node()[position()>1]" copy-namespaces="no"/></seg>
                         <txt><xsl:value-of select="$firstmatchingsegment/txt"/></txt>
                     </matchingsegment>
+                    <xsl:copy-of select="$matchingsegments/matchingsegment[position()>1]"/>
                 </xsl:variable>
                 <xsl:call-template name="addFirstNoteToMixedContent">
                     <xsl:with-param name="mixedcontent"><xsl:copy-of select="$updatedmixedcontent"/></xsl:with-param>
                     <xsl:with-param name="matchingsegments"><xsl:copy-of select="$updatedmatchingsegments"/></xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
-            <xsl:when test="$nodetoadd/self::text() and starts-with(string($mixedcontent), $nodetoadd)">
+            <xsl:when test="$nodetoadd/self::text() and (starts-with(string($mixedcontent), $nodetoadd) or starts-with(string($mixedcontent), concat(' ', $nodetoadd)))">
                 <!-- If the node is a text node, output it and remove the corresponding text from $mixedcontent and $matchingsegments -->
                 <xsl:variable select="string-length($nodetoadd)" name="nodelength"/>
-                <xsl:value-of select="substring(string($mixedcontent),$nodelength)"/>
+                <xsl:value-of select="substring(string($mixedcontent),1, $nodelength)"/>
                 <xsl:if test="string-length($mixedcontent/child::node()[1])=$nodelength">
                     <!-- If all the first mixed content node has been processed, remove this node from $mixedcontent and $matchingsegments -->
                     <xsl:variable name="updatedmixedcontent">
-                        <xsl:copy-of select="$mixedcontent/child::node()[position()>2]"/>
+                        <xsl:copy-of select="$mixedcontent/child::node()[position()>1]"/>
                     </xsl:variable>
                      <xsl:variable name="updatedmatchingsegments">
-                        <matchingsegment>
-                            <xsl:attribute name="rank"><xsl:value-of select="$firstmatchingsegment/@rank"/></xsl:attribute>
-                            <!-- The index attribute gives the starting character position of the matching segment within the plain text -->
-                            <xsl:attribute name="index"><xsl:value-of select="$firstmatchingsegment/@index - $nodelength"/></xsl:attribute>
-                            <seg><xsl:copy-of select="$firstmatchingsegment/seg/child::node()[position()>2]" copy-namespaces="no"/></seg>
-                            <txt><xsl:value-of select="substring($firstmatchingsegment/txt,$nodelength+1)"/></txt>
-                        </matchingsegment>
-                        <xsl:copy-of select="$mixedcontent/child::node()[position()>2]"/>
+                         <!-- Update the first matchingsegment if it has not been completely processed yet -->
+                         <xsl:if test="$firstmatchingsegment/@index &gt; $nodelength">
+                             <matchingsegment>
+                                <xsl:attribute name="rank"><xsl:value-of select="$firstmatchingsegment/@rank"/></xsl:attribute>
+                                <!-- The index attribute gives the starting character position of the matching segment within the plain text -->
+                                <xsl:attribute name="index"><xsl:value-of select="$firstmatchingsegment/@index - $nodelength"/></xsl:attribute>
+                                <seg><xsl:copy-of select="$firstmatchingsegment/seg/child::node()[position()>1]" copy-namespaces="no"/></seg>
+                                <txt><xsl:value-of select="substring($firstmatchingsegment/txt,$nodelength+1)"/></txt>
+                            </matchingsegment>
+                         </xsl:if>
+                         <xsl:copy-of select="$matchingsegments/matchingsegment[position()>1]"/>
                     </xsl:variable>
-                    <xsl:call-template name="addFirstNoteToMixedContent">
-                        <xsl:with-param name="mixedcontent"><xsl:copy-of select="$updatedmixedcontent"/></xsl:with-param>
-                        <xsl:with-param name="matchingsegments"><xsl:copy-of select="$updatedmatchingsegments"/></xsl:with-param>
-                    </xsl:call-template>  
+                    <xsl:if test="count($updatedmatchingsegments/node())">
+                        <!-- Recursive call if there is something left to process -->
+                        <xsl:call-template name="addFirstNodeToMixedContent">
+                            <xsl:with-param name="mixedcontent"><xsl:copy-of select="$updatedmixedcontent"/></xsl:with-param>
+                            <xsl:with-param name="matchingsegments"><xsl:copy-of select="$updatedmatchingsegments"/></xsl:with-param>
+                        </xsl:call-template>
+                    </xsl:if>
                 </xsl:if>
                 <xsl:if test="string-length($mixedcontent/child::node()[1])&gt;$nodelength">
                     <!-- If the text in the mixed content node is longer than the text in the TMX segment (because there is a note just after),
                         shorten but keep the mixed content node -->
                     <xsl:variable name="updatedmixedcontent">
                         <xsl:value-of select="substring($mixedcontent/child::node()[1], $nodelength+1)"/>
-                        <xsl:copy-of select="$mixedcontent/child::node()[position()>2]"/>
+                        <xsl:copy-of select="$mixedcontent/child::node()[position()>1]"/>
                     </xsl:variable>
                     <xsl:variable name="updatedmatchingsegments">
                         <matchingsegment>
                             <xsl:attribute name="rank"><xsl:value-of select="$firstmatchingsegment/@rank"/></xsl:attribute>
                             <!-- The index attribute gives the starting character position of the matching segment within the plain text -->
                             <xsl:attribute name="index"><xsl:value-of select="$firstmatchingsegment/@index - $nodelength"/></xsl:attribute>
-                            <seg><xsl:copy-of select="$firstmatchingsegment/seg/child::node()[position()>2]" copy-namespaces="no"/></seg>
+                            <seg><xsl:copy-of select="$firstmatchingsegment/seg/child::node()[position()>1]" copy-namespaces="no"/></seg>
                             <txt><xsl:value-of select="substring($firstmatchingsegment/txt,$nodelength+1)"/></txt>
                         </matchingsegment>
-                        <xsl:copy-of select="$mixedcontent/child::node()[position()>2]"/>
+                        <xsl:copy-of select="$matchingsegments/matchingsegment[position()>1]"/>
                     </xsl:variable>
                     <xsl:call-template name="addFirstNoteToMixedContent">
                         <xsl:with-param name="mixedcontent"><xsl:copy-of select="$updatedmixedcontent"/></xsl:with-param>
@@ -204,7 +211,7 @@
     <xsl:template match="h:head">
         <xsl:element name="head" namespace="http://www.w3.org/1999/xhtml">
             <xsl:apply-templates />
-            <xsl:copy-of select="$segments" />
+            <!--xsl:copy-of select="$segments" /-->
         </xsl:element>
     </xsl:template>
     <!-- For elements without child elements -->
