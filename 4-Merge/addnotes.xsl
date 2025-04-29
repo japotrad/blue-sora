@@ -4,37 +4,24 @@
     <xsl:include href="functions.xsl"/>
     <!-- Full path to the TMX file -->
     <xsl:param name="tmx" select="concat(substring-before(base-uri(),'.html'), '.tmx')"/> 
-    <xsl:output method="xml" omit-xml-declaration="no" indent="yes" encoding="UTF-8" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>
+    <xsl:output method="xml" omit-xml-declaration="no" indent="no" encoding="UTF-8" doctype-public="-//W3C//DTD XHTML 1.1//EN" doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"/>
     <xsl:variable name="segments">
         <xsl:if test="doc-available($tmx)">
             <xsl:for-each select="document($tmx)/tmx/body/tu">
+                <xsl:variable name="tu" select="."/>
                 <xsl:variable name="targetsegment" select="tuv[@xml:lang!='ja' and @xml:lang!='ja-JP']/seg[1]"/>
                 <!-- From the TMX, get texts longer than 5 characters -->
                 <xsl:if test="string-length($targetsegment/text()[1]) &gt; 5">
                     <segment>
-                        <xsl:copy-of select="$targetsegment" copy-namespaces="no"/>
+                        <seg>
+                            <xsl:for-each select="$targetsegment/child::node()">
+                                <xsl:copy-of select="current()" copy-namespaces="no"/>
+                            </xsl:for-each>
+                            <xsl:if test="$tu/note"><!-- Convert the global note into a final inline note -->
+                                <ph type="fnote"><sub><xsl:value-of select="$tu/note/text()"/></sub></ph>
+                            </xsl:if>
+                        </seg>
                         <txt><xsl:value-of select="$targetsegment/text()"/></txt>
-                        <xsl:if test="./note or $targetsegment/ph">
-                            <notes>
-                                <xsl:for-each select="$targetsegment/ph">
-                                    <!-- Note placed in the middle of the segment text -->
-                                    <note>
-                                        <!--  The index attribute gives the character position of the callout within the TMX segment -->
-                                        <xsl:attribute name="index">
-                                            <xsl:value-of select="string-length(string-join((preceding-sibling::text()),''))+1"/>
-                                        </xsl:attribute>
-                                        <xsl:value-of select="sub[1]/text()"/>
-                                    </note>
-                                </xsl:for-each>
-                                <xsl:if test="./note">
-                                    <!-- Global note on the text unit: the callout should be placed at the end of the segment -->
-                                    <note>
-                                        <xsl:attribute name="index"><xsl:value-of select="string-length($targetsegment/text())+1"/></xsl:attribute>
-                                        <xsl:value-of select="./note/text()"/>
-                                    </note>
-                                </xsl:if>
-                            </notes>
-                        </xsl:if>
                     </segment>
                 </xsl:if>
             </xsl:for-each>
@@ -73,6 +60,7 @@
                 <xsl:with-param name="matchingsegments"><xsl:copy-of select="$matchingsegments"/></xsl:with-param>
             </xsl:call-template>
         </xsl:element>
+        <xsl:text>&#xa;</xsl:text>
     </xsl:template>
     <xsl:template name="addFirstNodeToMixedContent">
         <xsl:param name="mixedcontent"/>
@@ -236,6 +224,7 @@
     </xsl:template>
     <xsl:template match="h:head">
         <xsl:element name="head" namespace="http://www.w3.org/1999/xhtml">
+            <xsl:text>&#xa;      </xsl:text>
             <xsl:element name="style" namespace="http://www.w3.org/1999/xhtml">
                 <xsl:attribute name="type">text/css</xsl:attribute>
                 <xsl:text>.footnoteText {display: none; color: #ff0000; } .footnote:focus + .footnoteText {display: block;} .close:focus .footnoteText {display: none;}</xsl:text>
@@ -243,32 +232,26 @@
             <xsl:apply-templates />
         </xsl:element>
     </xsl:template>
-    <!-- For elements without child elements -->
-    <xsl:template match="h:br|h:meta|h:title">
+    <xsl:template match="h:body">
+        <xsl:copy copy-namespaces="no"><xsl:apply-templates select="@*|*"/></xsl:copy>
+    </xsl:template>
+    <xsl:template match="h:br">
+        <xsl:copy-of select="." copy-namespaces="no"/>
+        <xsl:text>&#xa;</xsl:text>
+    </xsl:template>
+    <xsl:template match="h:meta|h:title">
         <xsl:copy-of select="." copy-namespaces="no"/>
     </xsl:template>
-    <!-- For other elements with child elements -->
     <xsl:template match="h:div[@id='contents' and @style='display:none']"/>
-    <xsl:template match="h:body|h:div"><xsl:copy copy-namespaces="no"><xsl:apply-templates select="@*|*"/></xsl:copy></xsl:template>
+    <xsl:template match="h:div">
+        <xsl:copy copy-namespaces="no"><xsl:apply-templates select="@*|*"/></xsl:copy>
+        <xsl:text>&#xa;</xsl:text>
+    </xsl:template>
     <!-- Copy attributes -->
     <xsl:template match="@*"><xsl:copy select="."/></xsl:template>
     <xsl:template name="footnote">
         <xsl:param name="footnotetext"/>
-        <xsl:element name="a" namespace="http://www.w3.org/1999/xhtml">
-            <xsl:attribute name="class">footnote</xsl:attribute>
-            <xsl:attribute name="href">#footnote</xsl:attribute>
-            <xsl:element name="sup" namespace="http://www.w3.org/1999/xhtml">
-                <xsl:text>*</xsl:text>
-            </xsl:element>
-        </xsl:element>
-        <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml">
-            <xsl:attribute name="class">footnoteText</xsl:attribute>
-            <xsl:value-of select="$footnotetext" />
-            <xsl:element name="a" namespace="http://www.w3.org/1999/xhtml">
-                <xsl:attribute name="class">close</xsl:attribute>
-                <xsl:attribute name="href">#close</xsl:attribute>
-                <xsl:text>X</xsl:text>
-            </xsl:element>
-        </xsl:element>
+        <xsl:element name="a" namespace="http://www.w3.org/1999/xhtml"><xsl:attribute name="class">footnote</xsl:attribute><xsl:attribute name="href">#footnote</xsl:attribute><xsl:element name="sup" namespace="http://www.w3.org/1999/xhtml"><xsl:text>*</xsl:text></xsl:element></xsl:element>
+        <xsl:element name="span" namespace="http://www.w3.org/1999/xhtml"><xsl:attribute name="class">footnoteText</xsl:attribute><xsl:value-of select="$footnotetext"/><xsl:element name="a" namespace="http://www.w3.org/1999/xhtml"><xsl:attribute name="class">close</xsl:attribute><xsl:attribute name="href">#close</xsl:attribute><xsl:text>x</xsl:text></xsl:element></xsl:element>
     </xsl:template>
 </xsl:stylesheet>
