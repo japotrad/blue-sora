@@ -10,8 +10,6 @@
             <xsl:for-each select="document($tmx)/tmx/body/tu">
                 <xsl:variable name="tu" select="."/>
                 <xsl:variable name="targetsegment" select="tuv[@xml:lang!='ja' and @xml:lang!='ja-JP']/seg[1]"/>
-                <!-- From the TMX, get texts longer than 5 characters -->
-                <xsl:if test="string-length($targetsegment/text()[1]) &gt; 5">
                     <segment>
                         <seg>
                             <xsl:for-each select="$targetsegment/child::node()">
@@ -23,7 +21,6 @@
                         </seg>
                         <txt><xsl:value-of select="$targetsegment/text()"/></txt>
                     </segment>
-                </xsl:if>
             </xsl:for-each>
         </xsl:if>
     </xsl:variable>
