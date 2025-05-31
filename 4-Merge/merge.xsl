@@ -5,20 +5,20 @@
     version="2.0">
     <xsl:variable name="base-uri-radical" select="substring-before(base-uri(),'_')"/> <!-- URI to process truncated before the language code -->
     <!-- 2-letter code of the language the document has been translated into -->
-    <xsl:param name="lang" select="substring-after(substring-before(base-uri(), '.html'),'_')"/>
+    <xsl:variable name="rawLang" select="substring-after(substring-before(base-uri(), '.html'),'_')"/>
+    <xsl:variable name="defaultLang">
+        <xsl:if test="contains($rawLang, '_')"><xsl:value-of select="substring-before($rawLang, '_')"/></xsl:if>
+        <xsl:if test="not(contains($rawLang, '_'))"><xsl:value-of select="$rawLang"/></xsl:if>
+    </xsl:variable>
+    <xsl:param name="lang" select="$defaultLang"/>
     <!-- Full path to the RIS XML file -->
-    <xsl:param name="ris" select="concat(substring-before(base-uri(), '.html'), '_ris.xml')"/>
+    <xsl:param name="ris" select="concat($base-uri-radical, '_', $lang, '_ris.xml')"/>
     <!-- Full path to the preface HTML file in the target language -->
-    <xsl:param name="preface" select="concat(substring-before(base-uri(), '.html'), '_preface.html')"/>
+    <xsl:param name="preface" select="concat($base-uri-radical, '_', $lang, '_preface.html')"/>
     <!-- Full path to the HTML document file in Japanese -->
     <xsl:param name="ja" select="concat($base-uri-radical, '_rich.html')"/>
-    <!-- Full path to the translation memory file -->
-    <xsl:param name="tmx" select="concat(substring-before(base-uri(), '.html'), '.tmx')"/>
     <xsl:output method="xml" encoding="UTF-8" indent="no" omit-xml-declaration="no"/>
     <xsl:template match="/">
-        <xsl:if test="not(doc-available($tmx))">
-            <xsl:message>Info: No translator note is generated, because no file has been found at: <xsl:value-of select="$tmx"/></xsl:message>
-        </xsl:if>
         <book>
             <xsl:attribute name="xml:lang">
                 <xsl:value-of select="$lang"/>
@@ -152,6 +152,11 @@
     </xsl:template>
     <!-- End of info element -->
     <xsl:template match="h:html/text()"/>
+    <xsl:template match="h:i">
+        <emphasis role="italic">
+            <xsl:apply-templates/>
+        </emphasis>
+    </xsl:template>
     <xsl:template match="h:p">
         <xsl:call-template name="para">
             <xsl:with-param name="p" select="."/>
@@ -195,36 +200,42 @@
     <xsl:template match="h:ruby">
         <ruby><xsl:apply-templates select="h:rb/text()"/><xsl:apply-templates select="h:rt"/></ruby>
     </xsl:template>
-    <xsl:template match="h:strong|h:em">
+    <xsl:template match="h:strong[ancestor::h:html[@lang='ja']]|h:em[ancestor::h:html[@lang='ja']]">
+        <emphasis>
+            <xsl:if test="string(.[@class])">
+                <xsl:attribute name="role" select="./@class"/>
+            </xsl:if>
+            <xsl:apply-templates/>
+        </emphasis>
+    </xsl:template><!-- End of strong and em element in Japanese -->
+    <xsl:template match="h:strong[ancestor::h:html[@lang!='ja']]|h:em[ancestor::h:html[@lang!='ja']]">
         <emphasis>
             <xsl:if test="string(.[@class])">
                 <xsl:variable name="role">
-                    <xsl:choose>
-                        <xsl:when test="lower-case(./@class)='sesame_dot'"><xsl:text>bold</xsl:text></xsl:when>
-                        <xsl:otherwise><xsl:value-of select="./@class"/></xsl:otherwise>
+                    <xsl:choose> <!-- The role attribute value depends on the target language and on the class attribute value -->
+                        <xsl:when test="$lang='en'">
+                            <xsl:choose>
+                                <xsl:when test="lower-case(./@class)='sesame_dot'"><xsl:text>bold</xsl:text></xsl:when>
+                                <xsl:when test="lower-case(./@class)='white_circle'"><xsl:text>bold</xsl:text></xsl:when>
+                                <xsl:otherwise><xsl:value-of select="./@class"/></xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:when>
+                        <xsl:when test="$lang='fr'">
+                            <xsl:choose>
+                                <xsl:when test="lower-case(./@class)='sesame_dot'"><xsl:text>bold</xsl:text></xsl:when>
+                                <xsl:when test="lower-case(./@class)='white_circle'"><xsl:text>underline</xsl:text></xsl:when>
+                                <xsl:otherwise><xsl:value-of select="./@class"/></xsl:otherwise>
+                            </xsl:choose>
+                        </xsl:when>
+                        <xsl:otherwise><xsl:value-of select="./@class"/></xsl:otherwise><!-- Copy Japanese typography instructions in the target language as is -->
                     </xsl:choose>
                 </xsl:variable>
                 <xsl:attribute name="role" select="$role"/>
             </xsl:if>
             <xsl:apply-templates/>
         </emphasis>
-    </xsl:template>
-    <!-- End of strong element -->
-    <xsl:template match="text()">
-        <xsl:variable name="txt"><xsl:value-of select="."/></xsl:variable>
-        <xsl:variable name="annotatedTU"><!-- TMX translation unit elements whose target language variant is part of the text being processed and which contains a note child element -->
-            <xsl:if test="doc-available($tmx)">
-                <xsl:variable name="translatorNotes" select="document($tmx)/tmx/body/tu[note]"/>
-                    <xsl:for-each select="$translatorNotes">
-                    <xsl:if test="contains($txt,./tuv[@xml:lang=$lang]/seg)">
-                        <xsl:copy-of select="."/>
-                    </xsl:if>
-                </xsl:for-each>
-            </xsl:if>
-        </xsl:variable>
-        <xsl:if test="$annotatedTU=''">
-            <xsl:value-of select="$txt"/>
-        </xsl:if>
-        <xsl:if test="not($annotatedTU='')"><xsl:value-of select="substring-before($txt,$annotatedTU/tu/tuv[@xml:lang=$lang]/seg)"/><xsl:value-of select="$annotatedTU/tu/tuv[@xml:lang=$lang]/seg"/><footnote><para><xsl:value-of select="$annotatedTU/tu/note"/></para></footnote><xsl:value-of select="substring-after($txt,$annotatedTU/tu/tuv[@xml:lang=$lang]/seg)"/></xsl:if>
-    </xsl:template><!-- End of the text template -->
+    </xsl:template><!-- End of strong and em element in other languages -->
+    <!--xsl:template match="text()">
+        <xsl:value-of select="."/>
+    </xsl:template-->
 </xsl:stylesheet>
