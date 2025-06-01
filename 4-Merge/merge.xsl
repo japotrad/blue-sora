@@ -54,6 +54,7 @@
             <xsl:apply-templates/>
         </article>
     </xsl:template>
+    <xsl:template match="h:a[@class='footnote']"/>
     <xsl:template match="h:body/text()"/>
     <xsl:template match="h:div/text()"/>
     <xsl:template match="h:h1"/> <!-- The document title is retrieved in the info template -->
@@ -199,6 +200,9 @@
     </xsl:template>
     <xsl:template match="h:ruby">
         <ruby><xsl:apply-templates select="h:rb/text()"/><xsl:apply-templates select="h:rt"/></ruby>
+    </xsl:template>
+    <xsl:template match="h:span[@class='footnoteText']">
+        <footnote><para><xsl:value-of select="./child::text()"/></para></footnote>
     </xsl:template>
     <xsl:template match="h:strong[ancestor::h:html[@lang='ja']]|h:em[ancestor::h:html[@lang='ja']]">
         <emphasis>
