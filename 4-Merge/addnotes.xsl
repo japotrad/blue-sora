@@ -10,7 +10,8 @@
             <xsl:for-each select="document($tmx)/tmx/body/tu">
                 <xsl:variable name="tu" select="."/>
                 <xsl:variable name="targetsegment" select="tuv[@xml:lang!='ja' and @xml:lang!='ja-JP']/seg[1]"/>
-                    <segment>
+                  <xsl:if test="$targetsegment/text()!=$tu/tuv[@xml:lang!='ja' and @xml:lang!='ja-JP']/@xml:lang"><!-- Remove the translation unit containing the language codes -->
+                      <segment>
                         <seg>
                             <xsl:for-each select="$targetsegment/child::node()">
                                 <xsl:copy-of select="current()" copy-namespaces="no"/>
@@ -21,6 +22,7 @@
                         </seg>
                         <txt><xsl:value-of select="$targetsegment/text()"/></txt>
                     </segment>
+                </xsl:if>
             </xsl:for-each>
         </xsl:if>
     </xsl:variable>
