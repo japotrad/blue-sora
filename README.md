@@ -1,3 +1,7 @@
+# This repository has been moved to Codeberg on June 2025. See you there!
+https://codeberg.org/Japotrad/blue-sora
+---
+
 blue-sora is a preparation chain generating bilingual bibk files from Aozora Bunko HTML documents. Tools should works on all platforms, with minimal requirements: Saxon-like processor for XSLT 1.0 and 2.0, PHP 5+.
 
 # Initial workflow to create a new document
